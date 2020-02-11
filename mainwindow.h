@@ -37,8 +37,11 @@ private slots:
      *******************************************************/
     void on_clearPushBtn_2_clicked();
 
+    void on_DisplayCampusInfo_clicked();
+
 private:
     Ui::MainWindow *ui;
     Admin adminObj; // represents adminObj of class: Admin
+    DBManager databaseObj;
 };
 #endif // MAINWINDOW_H

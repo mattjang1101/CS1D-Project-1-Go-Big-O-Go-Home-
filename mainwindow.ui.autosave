@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>855</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>20</y>
+      <width>441</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>WELCOME TO COLLEGE TOUR, STUDENTS!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>80</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>ADMIN ONLY</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwordLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>641</x>
+      <y>140</y>
+      <width>148</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="usernameLabel">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>113</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Username: </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="usernameLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>641</x>
+      <y>113</y>
+      <width>148</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="passwordLabel">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>140</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Password: </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loginPushBtn_2">
+    <property name="geometry">
+     <rect>
+      <x>627</x>
+      <y>180</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Login</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearPushBtn_2">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>180</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>521</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="DisplayCampusInfo">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>300</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Display Campus information</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearPushBtn_3">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>340</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Display Souvenirs</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>855</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

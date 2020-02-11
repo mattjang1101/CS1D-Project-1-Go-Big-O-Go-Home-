@@ -47,3 +47,9 @@ void MainWindow::on_clearPushBtn_2_clicked()
     ui->usernameLineEdit->clear();
     ui->passwordLineEdit->clear();
 }
+
+
+void MainWindow::on_DisplayCampusInfo_clicked()
+{
+
+}

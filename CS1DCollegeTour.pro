@@ -22,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     admin.h \
+    dbmanager.h \
     mainwindow.h
 
 FORMS += \
