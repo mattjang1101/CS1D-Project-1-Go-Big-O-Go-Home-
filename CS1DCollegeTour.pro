@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     admin.cpp \
+    dbmanager.cpp \
     main.cpp \
     mainwindow.cpp
 
