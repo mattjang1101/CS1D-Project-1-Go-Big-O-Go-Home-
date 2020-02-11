@@ -23,6 +23,9 @@
       <height>541</height>
      </rect>
     </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
     <widget class="QWidget" name="adminPage">
      <widget class="QLabel" name="label_2">
       <property name="geometry">
@@ -45,6 +48,7 @@
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="page"/>
     <widget class="QWidget" name="page_2"/>
    </widget>
   </widget>
@@ -54,7 +58,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

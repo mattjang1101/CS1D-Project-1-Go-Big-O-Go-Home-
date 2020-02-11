@@ -135,6 +135,42 @@
      <string>Clear</string>
     </property>
    </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>521</width>
+      <height>461</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="DisplayCampusInfo">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>300</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Display Campus information</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearPushBtn_3">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>340</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Display Souvenirs</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -142,7 +178,7 @@
      <x>0</x>
      <y>0</y>
      <width>855</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
