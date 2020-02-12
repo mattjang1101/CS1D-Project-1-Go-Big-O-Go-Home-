@@ -59,3 +59,36 @@ QSqlQueryModel *DBManager::loadSouvenirs()
     return model;
 }
 
+QSqlQueryModel *DBManager::loadStartingCollegeList()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT startingCollege FROM CollegeDistances");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+//QSqlQueryModel *DBManager::loadCollegesBySelection()
+//{
+//    QSqlQueryModel* model = new QSqlQueryModel();
+
+//    QSqlQuery qry;
+//    qry.prepare("SELECT startingCollege FROM CollegeDistances");
+
+//    if(!qry.exec())
+//    {
+//        qDebug() <<"error Loading values to db" << endl;
+
+//    }
+//    model->setQuery(qry);
+
+//    return model;
+//}

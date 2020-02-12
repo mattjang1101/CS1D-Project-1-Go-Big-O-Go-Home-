@@ -25,7 +25,7 @@ public:
 
     //----------------------------STORY 1 CODE-----------------------------------------//
      void showTable(QSqlQueryModel *model);
-
+     void showList(QSqlQueryModel *model);
 
 
 private slots:
@@ -48,6 +48,12 @@ private slots:
     void on_DisplayCampusInfo_clicked();
 
     void on_DisplaySouvenirs_clicked();
+
+    void on_StartTour_clicked();
+
+    void on_SelectStartingCollegeButton_clicked();
+
+    void on_StartingCollegeComboBox_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

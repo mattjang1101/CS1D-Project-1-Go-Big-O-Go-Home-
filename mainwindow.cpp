@@ -67,14 +67,50 @@ void MainWindow::showTable(QSqlQueryModel *model)
     ui->tableView->setModel(model);     // showTable() shows the QSqlQueryModel database model to the tableview
 }
 
+void MainWindow::showList(QSqlQueryModel *model)
+{
+    ui->StartingCollegeComboBox->setModel(model);
+}
+
 void MainWindow::on_DisplayCampusInfo_clicked()
 {
     showTable(databaseObj.loadCampusInfo());
 }
 
-
-
 void MainWindow::on_DisplaySouvenirs_clicked()
 {
     showTable(databaseObj.loadSouvenirs());
+}
+
+void MainWindow::on_StartTour_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_SelectStartingCollegeButton_clicked()
+{
+    showList(databaseObj.loadStartingCollegeList());
+}
+
+void MainWindow::on_StartingCollegeComboBox_currentIndexChanged(const QString &arg1)
+{
+    QString SelectedCollege = ui->StartingCollegeComboBox->currentText();
+
+    qDebug() << SelectedCollege;
+
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT startingCollege, endingCollege, distanceBetween FROM CollegeDistances where startingCollege='"+SelectedCollege+"'");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+
+    model->setQuery(qry);
+
+    ui->DistancesTable->setModel(model);
+
 }
