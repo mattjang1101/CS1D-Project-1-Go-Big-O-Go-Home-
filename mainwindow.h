@@ -8,6 +8,7 @@
 #include <QtSql>
 #include <QObject>
 #include <admin.h>
+#include <QKeyEvent>
 #include "dbmanager.h"
 
 QT_BEGIN_NAMESPACE
@@ -52,5 +53,8 @@ private:
     Ui::MainWindow *ui;
     Admin adminObj; // represents adminObj of class: Admin
     DBManager databaseObj;
+
+protected:
+        void keyPressEvent(QKeyEvent* pe);
 };
 #endif // MAINWINDOW_H

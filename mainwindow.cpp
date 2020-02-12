@@ -1,12 +1,20 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QDesktopServices>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QPixmap pix(":/Images/MainWindow_Logo.png");
+
+    int w = ui->MainWindowLogo->width();
+    int h = ui->MainWindowLogo->height();
+    ui->MainWindowLogo->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio,Qt::SmoothTransformation));
 }
 
 MainWindow::~MainWindow()
@@ -36,6 +44,11 @@ void MainWindow::on_loginPushBtn_2_clicked()
         // Displays error message
         QMessageBox::warning(this, "Login", "Username or password is not correct");
     }
+}
+
+void MainWindow::keyPressEvent(QKeyEvent* pe)
+{
+if(pe->key() == Qt::Key_Return) on_loginPushBtn_2_clicked();                   //Enter Key works as input for buttonLogin()
 }
 
 /*******************************************************
