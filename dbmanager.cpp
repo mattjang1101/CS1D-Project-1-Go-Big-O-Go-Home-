@@ -75,3 +75,37 @@ QSqlQueryModel *DBManager::loadStartingCollegeList()
 
     return model;
 }
+
+QSqlQueryModel *DBManager::loadTourQueueData()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT StartingPoint, Destination, TravelDistance, MoneySpent FROM TourData");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+QSqlQueryModel *DBManager::loadNextDestination()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT DISTINCT endingCollege FROM CollegeDistances");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}

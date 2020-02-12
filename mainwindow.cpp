@@ -22,6 +22,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+    //---------------------------MAIN WINDOW CODE-----------------------------------------//
+
+
 /*******************************************************
  * on_loginPushBtn2_clicked() -
  *  This function error checks for right username and
@@ -65,11 +68,7 @@ void MainWindow::on_clearPushBtn_2_clicked()
 void MainWindow::showTable(QSqlQueryModel *model)
 {
     ui->tableView->setModel(model);     // showTable() shows the QSqlQueryModel database model to the tableview
-}
-
-void MainWindow::showList(QSqlQueryModel *model)
-{
-    ui->StartingCollegeComboBox->setModel(model);
+    ui->QueueTableView->setModel(model);
 }
 
 void MainWindow::on_DisplayCampusInfo_clicked()
@@ -86,6 +85,16 @@ void MainWindow::on_StartTour_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
+
+    //----------------------------TOUR PAGE 2 CODE-----------------------------------------//
+
+void MainWindow::showList(QSqlQueryModel *model)
+{
+    ui->StartingCollegeComboBox->setModel(model);
+    ui->StartingPointBox->setModel(model);
+    ui->NextDestinationBox->setModel(model);
+}
+
 
 void MainWindow::on_SelectStartingCollegeButton_clicked()
 {
@@ -114,3 +123,38 @@ void MainWindow::on_StartingCollegeComboBox_currentIndexChanged(const QString &a
     ui->DistancesTable->setModel(model);
 
 }
+
+void MainWindow::on_PlanCustomTripButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+    //----------------------------TOUR PAGE 2 CODE-----------------------------------------//
+
+
+void MainWindow::on_SelectStartingCollegeButton_3_clicked()
+{
+    showList(databaseObj.loadStartingCollegeList());
+    showList(databaseObj.loadNextDestination());
+}
+
+void MainWindow::on_AddQueueButton_clicked()
+{
+    QString StartPoint = ui->StartingPointBox->currentText();
+    QString EndPoint = ui->NextDestinationBox->currentText();
+
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO TourData (StartingPoint, Destination) VALUES ('"+StartPoint+"', '"+EndPoint+"')");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not add to Queue. . ." << endl;
+
+    }
+
+    showTable(databaseObj.loadTourQueueData());
+
+}
+

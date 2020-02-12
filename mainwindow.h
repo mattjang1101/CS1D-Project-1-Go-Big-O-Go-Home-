@@ -55,6 +55,12 @@ private slots:
 
     void on_StartingCollegeComboBox_currentIndexChanged(const QString &arg1);
 
+    void on_AddQueueButton_clicked();
+
+    void on_SelectStartingCollegeButton_3_clicked();
+
+    void on_PlanCustomTripButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Admin adminObj; // represents adminObj of class: Admin
