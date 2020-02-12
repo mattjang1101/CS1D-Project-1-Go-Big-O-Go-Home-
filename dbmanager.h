@@ -26,8 +26,6 @@ public:
     QSqlQueryModel *loadCampusInfo();
     QSqlQueryModel *loadSouvenirs();
     QSqlQueryModel *loadStartingCollegeList();
-//    QSqlQueryModel *loadCollegesBySelection();
-
 
 private:
     QSqlDatabase m_database;
