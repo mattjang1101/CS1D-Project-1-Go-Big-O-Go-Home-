@@ -5,7 +5,10 @@
 #include <QMessageBox>
 #include <QString>
 #include <QDebug>
+#include <QtSql>
+#include <QObject>
 #include <admin.h>
+#include "dbmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +21,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    //----------------------------STORY 1 CODE-----------------------------------------//
+     void showTable(QSqlQueryModel *model);
+
 
 
 private slots:
@@ -38,6 +45,8 @@ private slots:
     void on_clearPushBtn_2_clicked();
 
     void on_DisplayCampusInfo_clicked();
+
+    void on_DisplaySouvenirs_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -158,7 +158,7 @@
      <string>Display Campus information</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="clearPushBtn_3">
+   <widget class="QPushButton" name="DisplaySouvenirs">
     <property name="geometry">
      <rect>
       <x>570</x>

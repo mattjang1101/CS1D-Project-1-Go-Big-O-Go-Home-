@@ -30,7 +30,24 @@ QSqlQueryModel *DBManager::loadCampusInfo()
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("select startingCollege, endingCollege, distanceBetween from CollegeDistances where startingCollege = ""Saddleback College");
+    qry.prepare("SELECT startingCollege, endingCollege, distanceBetween FROM CollegeDistances");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+QSqlQueryModel *DBManager::loadSouvenirs()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT college, traditionalSouvenirs, cost FROM Souvenirs");
 
     if(!qry.exec())
     {

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QtSql>
+#include <QObject>
 
 class DBManager
 {
@@ -23,6 +24,7 @@ public:
     *  db". Returns pointer
     *******************************************************/
     QSqlQueryModel *loadCampusInfo();
+    QSqlQueryModel *loadSouvenirs();
 
 
 private:

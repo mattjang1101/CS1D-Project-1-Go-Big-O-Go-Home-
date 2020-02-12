@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -48,8 +49,19 @@ void MainWindow::on_clearPushBtn_2_clicked()
     ui->passwordLineEdit->clear();
 }
 
+void MainWindow::showTable(QSqlQueryModel *model)
+{
+    ui->tableView->setModel(model);     // showTable() shows the QSqlQueryModel database model to the tableview
+}
 
 void MainWindow::on_DisplayCampusInfo_clicked()
 {
+    showTable(databaseObj.loadCampusInfo());
+}
 
+
+
+void MainWindow::on_DisplaySouvenirs_clicked()
+{
+    showTable(databaseObj.loadSouvenirs());
 }
