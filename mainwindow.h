@@ -23,10 +23,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    //----------------------------STORY 1 CODE-----------------------------------------//
-     void showTable(QSqlQueryModel *model);
-     void showList(QSqlQueryModel *model);
-
 
 private slots:
 
