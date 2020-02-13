@@ -86,7 +86,7 @@ QSqlQueryModel *DBManager::loadTourQueueData()
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("SELECT StartingPoint, Destination, TravelDistance, MoneySpent FROM TourData");
+    qry.prepare("SELECT Queue FROM TourData");
 
     if(!qry.exec())
     {

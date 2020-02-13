@@ -66,6 +66,8 @@ private slots:
 
     void on_backButton_6_clicked();
 
+    void on_LoadData_clicked();
+
 private:
     Ui::MainWindow *ui;
     Admin adminObj; // represents adminObj of class: Admin

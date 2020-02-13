@@ -148,12 +148,12 @@ void MainWindow::on_SelectStartingCollegeButton_3_clicked()
 
 void MainWindow::on_AddQueueButton_clicked()
 {
-    QString StartPoint = ui->StartingPointBox->currentText();
+    QString AddToQueue = ui->StartingPointBox->currentText();
 
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("INSERT INTO TourData (StartingPoint, Destination) VALUES ('"+StartPoint+"')");
+    qry.prepare("INSERT INTO TourData (Queue) VALUES ('"+AddToQueue+"')");
 
     if(!qry.exec())
     {
@@ -178,4 +178,10 @@ void MainWindow::on_backButton_2_clicked()
 void MainWindow::on_backButton_6_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_LoadData_clicked()
+{
+    ui->CollegeSelectBox->setModel(databaseObj.loadStartingCollegeList());
+    ui->PrePQueueTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
