@@ -91,17 +91,9 @@ void MainWindow::on_StartTour_clicked()
 
     //----------------------------TOUR PAGE 2 CODE-----------------------------------------//
 
-void MainWindow::showList(QSqlQueryModel *model)
-{
-    ui->StartingCollegeComboBox->setModel(model);
-    ui->StartingPointBox->setModel(model);
-    ui->NextDestinationBox->setModel(model);
-}
-
-
 void MainWindow::on_SelectStartingCollegeButton_clicked()
 {
-    showList(databaseObj.loadStartingCollegeList());
+    ui->StartingCollegeComboBox->setModel(databaseObj.loadStartingCollegeList());
 }
 
 void MainWindow::on_StartingCollegeComboBox_currentIndexChanged(const QString &arg1)
@@ -137,8 +129,9 @@ void MainWindow::on_PlanCustomTripButton_clicked()
 
 void MainWindow::on_SelectStartingCollegeButton_3_clicked()
 {
-    showList(databaseObj.loadStartingCollegeList());
-    showList(databaseObj.loadNextDestination());
+    ui->StartingPointBox->setModel(databaseObj.loadStartingCollegeList());
+    ui->NextDestinationBox->setModel(databaseObj.loadNextDestination());
+
 }
 
 void MainWindow::on_AddQueueButton_clicked()
