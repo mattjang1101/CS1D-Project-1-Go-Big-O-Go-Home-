@@ -66,21 +66,22 @@ void MainWindow::on_clearPushBtn_2_clicked()
     ui->passwordLineEdit->clear();
 }
 
-void MainWindow::showTable(QSqlQueryModel *model)
-{
-    ui->tableView->setModel(model);     // showTable() shows the QSqlQueryModel database model to the tableview
-    ui->QueueTableView->setModel(model);
-}
+//void MainWindow::showTable(QSqlQueryModel *model)
+//{
+//    ui->tableView->setModel(model);     // showTable() shows the QSqlQueryModel database model to the tableview
+//    ui->QueueTableView->setModel(model);
+//}
 
 void MainWindow::on_DisplayCampusInfo_clicked()
 {
-    showTable(databaseObj.loadCampusInfo());
+    //showTable(databaseObj.loadCampusInfo());
     ui->tableView->setModel(databaseObj.loadCampusInfo());
 }
 
 void MainWindow::on_DisplaySouvenirs_clicked()
 {
-    showTable(databaseObj.loadSouvenirs());
+    //showTable(databaseObj.loadSouvenirs());
+    ui->tableView->setModel(databaseObj.loadSouvenirs());
 }
 
 void MainWindow::on_StartTour_clicked()
@@ -156,7 +157,8 @@ void MainWindow::on_AddQueueButton_clicked()
 
     }
 
-    showTable(databaseObj.loadTourQueueData());
+    //showTable(databaseObj.loadTourQueueData());
+    ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
 
 }
 
