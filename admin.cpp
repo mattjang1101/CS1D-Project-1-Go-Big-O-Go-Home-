@@ -8,10 +8,11 @@ Admin::Admin(QWidget *parent) :
     ui(new Ui::Admin)
 {
     ui->setupUi(this);
-    ui->stackedWidget->setCurrentWidget(ui->adminPage);
+    ui->stackedWidget->setCurrentWidget(ui->AdminMenu);
 }
 
 Admin::~Admin()
 {
     delete ui;
 }
+

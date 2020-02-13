@@ -57,6 +57,15 @@ private slots:
 
     void on_PlanCustomTripButton_clicked();
 
+    void on_backButton_1_clicked();
+
+    void on_backButton_2_clicked();
+
+
+    void on_PrePlannedButton_clicked();
+
+    void on_backButton_6_clicked();
+
 private:
     Ui::MainWindow *ui;
     Admin adminObj; // represents adminObj of class: Admin

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>871</width>
+    <height>601</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,52 +17,101 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>781</width>
-      <height>541</height>
+      <x>0</x>
+      <y>0</y>
+      <width>871</width>
+      <height>601</height>
      </rect>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="adminPage">
-     <widget class="QLabel" name="label_2">
+    <widget class="QWidget" name="AdminMenu">
+     <widget class="QWidget" name="layoutWidget_19">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>241</width>
-        <height>41</height>
+        <x>30</x>
+        <y>60</y>
+        <width>511</width>
+        <height>481</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QLabel" name="AdminLabel">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>******************** ADMINISTRATOR MENU ********************</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableView" name="AdminTable"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_20">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>61</y>
+        <width>253</width>
+        <height>242</height>
+       </rect>
       </property>
-      <property name="text">
-       <string>Welcome To the Admin Page!</string>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="AddButton">
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="SouvenirData">
+         <property name="text">
+          <string>Souvenir Data</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QComboBox" name="ItemComboBox"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="CampusData">
+         <property name="text">
+          <string>Campus Data</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="DeleteButton">
+         <property name="text">
+          <string>Delete</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QPushButton" name="EditButton">
+         <property name="text">
+          <string>Edit</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page"/>
-    <widget class="QWidget" name="page_2"/>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

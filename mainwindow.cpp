@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     int w = ui->MainWindowLogo->width();
     int h = ui->MainWindowLogo->height();
     ui->MainWindowLogo->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio,Qt::SmoothTransformation));
-    ui->stackedWidget->setCurrentWidget(ui->MainWindow_2);
+    ui->stackedWidget->setCurrentWidget(ui->MainMenu);
 }
 
 MainWindow::~MainWindow()
@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-    //---------------------------MAIN WINDOW CODE-----------------------------------------//
+    //---------------------------MAIN MENU CODE-----------------------------------------//
 
 
 /*******************************************************
@@ -76,12 +76,14 @@ void MainWindow::on_DisplayCampusInfo_clicked()
 {
     //showTable(databaseObj.loadCampusInfo());
     ui->tableView->setModel(databaseObj.loadCampusInfo());
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void MainWindow::on_DisplaySouvenirs_clicked()
 {
     //showTable(databaseObj.loadSouvenirs());
     ui->tableView->setModel(databaseObj.loadSouvenirs());
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void MainWindow::on_StartTour_clicked()
@@ -94,6 +96,7 @@ void MainWindow::on_StartTour_clicked()
 void MainWindow::on_SelectStartingCollegeButton_clicked()
 {
     ui->StartingCollegeComboBox->setModel(databaseObj.loadStartingCollegeList());
+    ui->DistancesTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void MainWindow::on_StartingCollegeComboBox_currentIndexChanged(const QString &arg1)
@@ -124,25 +127,33 @@ void MainWindow::on_PlanCustomTripButton_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-    //----------------------------TOUR PAGE 2 CODE-----------------------------------------//
+void MainWindow::on_PrePlannedButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_backButton_1_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+    //----------------------------CUSTOM TOUR PAGE CODE-----------------------------------------//
 
 
 void MainWindow::on_SelectStartingCollegeButton_3_clicked()
 {
     ui->StartingPointBox->setModel(databaseObj.loadStartingCollegeList());
-    ui->NextDestinationBox->setModel(databaseObj.loadNextDestination());
-
+    ui->QueueTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void MainWindow::on_AddQueueButton_clicked()
 {
     QString StartPoint = ui->StartingPointBox->currentText();
-    QString EndPoint = ui->NextDestinationBox->currentText();
 
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("INSERT INTO TourData (StartingPoint, Destination) VALUES ('"+StartPoint+"', '"+EndPoint+"')");
+    qry.prepare("INSERT INTO TourData (StartingPoint, Destination) VALUES ('"+StartPoint+"')");
 
     if(!qry.exec())
     {
@@ -155,3 +166,16 @@ void MainWindow::on_AddQueueButton_clicked()
 
 }
 
+void MainWindow::on_backButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+    //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
+
+
+void MainWindow::on_backButton_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}

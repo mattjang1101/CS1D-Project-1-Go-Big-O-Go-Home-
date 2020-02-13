@@ -18,8 +18,10 @@ public:
     explicit Admin(QWidget *parent = nullptr);
     ~Admin();
 
+
 private:
     Ui::Admin *ui;
+    QMainWindow MainObject;
 };
 
 #endif // ADMIN_H
