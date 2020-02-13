@@ -4,7 +4,7 @@ DBManager::DBManager()
 {
     // Connecting to database
     m_database = QSqlDatabase::addDatabase("QSQLITE");
-    m_database.setDatabaseName("/Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-/CS1DProject1.db");
+    m_database.setDatabaseName("E:/CS1D Lebowitz/QT Projects/CS1D-Project-1-Go-Big-O-Go-Home--master/CS1DProject1.db");
     if(!m_database.open())
     {
         qDebug() << "problem opening database" << endl;
