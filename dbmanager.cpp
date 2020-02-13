@@ -28,10 +28,14 @@ DBManager::~DBManager(){}
 *******************************************************/
 QSqlQueryModel *DBManager::loadCampusInfo()
 {
+    QString Saddleback = "Saddleback College";
+
+    qDebug() << Saddleback;
+
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("SELECT startingCollege, endingCollege, distanceBetween FROM CollegeDistances");
+    qry.prepare("SELECT startingCollege, endingCollege, distanceBetween FROM CollegeDistances where startingCollege='"+Saddleback+"'");
 
     if(!qry.exec())
     {

@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QtSql>
 #include <QObject>
+#include <string>
+#include <iostream>
+using namespace std;
 
 class DBManager
 {
