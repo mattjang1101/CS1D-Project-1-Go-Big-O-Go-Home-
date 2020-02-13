@@ -91,7 +91,7 @@ void MainWindow::on_StartTour_clicked()
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-    //----------------------------TOUR PAGE 2 CODE-----------------------------------------//
+    //----------------------------PLANNING PAGE CODE-----------------------------------------//
 
 void MainWindow::on_SelectStartingCollegeButton_clicked()
 {
@@ -150,8 +150,6 @@ void MainWindow::on_AddQueueButton_clicked()
 {
     QString AddToQueue = ui->StartingPointBox->currentText();
 
-    QSqlQueryModel* model = new QSqlQueryModel();
-
     QSqlQuery qry;
     qry.prepare("INSERT INTO TourData (Queue) VALUES ('"+AddToQueue+"')");
 
@@ -161,9 +159,22 @@ void MainWindow::on_AddQueueButton_clicked()
 
     }
 
-    //showTable(databaseObj.loadTourQueueData());
     ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
 
+}
+
+void MainWindow::on_DeleteQueueButton_clicked()
+{
+    QSqlQuery qry;
+    qry.prepare("DELETE FROM TourData WHERE Queue = (SELECT MAX(Queue) FROM TourData);");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not delete Queue data. . ." << endl;
+
+    }
+
+    ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
 }
 
 void MainWindow::on_backButton_2_clicked()
@@ -185,3 +196,4 @@ void MainWindow::on_LoadData_clicked()
     ui->CollegeSelectBox->setModel(databaseObj.loadStartingCollegeList());
     ui->PrePQueueTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
+

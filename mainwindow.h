@@ -25,6 +25,7 @@ public:
 
 
 private slots:
+    //---------------------------MAIN MENU CODE-----------------------------------------//
 
     /*******************************************************
      * on_loginPushBtn2_clicked() -
@@ -47,26 +48,36 @@ private slots:
 
     void on_StartTour_clicked();
 
+    //----------------------------PLANNING PAGE CODE-----------------------------------------//
+
     void on_SelectStartingCollegeButton_clicked();
 
     void on_StartingCollegeComboBox_currentIndexChanged(const QString &arg1);
 
-    void on_AddQueueButton_clicked();
-
-    void on_SelectStartingCollegeButton_3_clicked();
-
     void on_PlanCustomTripButton_clicked();
+
+    void on_PrePlannedButton_clicked();
 
     void on_backButton_1_clicked();
 
+
+    //----------------------------CUSTOM TOUR PAGE CODE-----------------------------------------//
+
+    void on_SelectStartingCollegeButton_3_clicked();
+
+    void on_AddQueueButton_clicked();
+
+    void on_DeleteQueueButton_clicked();
+
     void on_backButton_2_clicked();
 
-
-    void on_PrePlannedButton_clicked();
+    //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
 
     void on_backButton_6_clicked();
 
     void on_LoadData_clicked();
+
+
 
 private:
     Ui::MainWindow *ui;
