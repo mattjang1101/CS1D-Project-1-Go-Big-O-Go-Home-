@@ -157,7 +157,6 @@ void MainWindow::on_AddQueueButton_clicked()
     if(!qry.exec())
     {
         qDebug() <<"Error! Could not add to Queue. . ." << endl;
-
     }
     else
         qDebug() << "Successful insertion into Database" << endl;
@@ -165,8 +164,6 @@ void MainWindow::on_AddQueueButton_clicked()
     ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
 
 //    qry.prepare("SELECT COUNT(Queue)  FROM TourData");                    *GETS COUNT OF Queue COLUMN*
-
-//    if(ui->StartingPointBox->currentText() == Last)
 }
 
 void MainWindow::on_DeleteQueueButton_clicked()
@@ -174,7 +171,6 @@ void MainWindow::on_DeleteQueueButton_clicked()
     QSqlQuery qry;
 //    qry.prepare("DELETE FROM TourData WHERE Queue = (SELECT MAX(Queue) FROM TourData);");            *CLEARS ENTIRE QUEUE*
 
-//      If you load multiple of same College, this command will delete all data with matching name !
     qry.prepare("DELETE FROM TourData "
                 "WHERE Queue = (SELECT Queue"
                 "               FROM TourData"

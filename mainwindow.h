@@ -84,6 +84,7 @@ private:
     Admin adminObj; // represents adminObj of class: Admin
     DBManager databaseObj;
 
+
 protected:
         void keyPressEvent(QKeyEvent* pe);
 };
