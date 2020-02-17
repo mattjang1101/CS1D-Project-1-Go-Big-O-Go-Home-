@@ -5,7 +5,8 @@ DBManager::DBManager()
     // Connecting to database
     m_database = QSqlDatabase::addDatabase("QSQLITE");
     m_database.setDatabaseName("/Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-/CS1DProject1.db");
-//    /Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-
+    //C:/Users/hyunm/OneDrive/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-     // Matt's
+//    /Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-            // Lamson's
     if(!m_database.open())
     {
         qDebug() << "problem opening database" << endl;
@@ -28,10 +29,14 @@ DBManager::~DBManager(){}
 *******************************************************/
 QSqlQueryModel *DBManager::loadCampusInfo()
 {
+    QString Saddleback = "Saddleback College";
+
+    qDebug() << Saddleback;
+
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("SELECT startingCollege, endingCollege, distanceBetween FROM CollegeDistances");
+    qry.prepare("SELECT startingCollege, endingCollege, distanceBetween FROM CollegeDistances where startingCollege='"+Saddleback+"'");
 
     if(!qry.exec())
     {
@@ -82,7 +87,7 @@ QSqlQueryModel *DBManager::loadTourQueueData()
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("SELECT StartingPoint, Destination, TravelDistance, MoneySpent FROM TourData");
+    qry.prepare("SELECT Queue FROM TourData");
 
     if(!qry.exec())
     {
