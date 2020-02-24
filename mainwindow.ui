@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="MainMenu">
      <widget class="QWidget" name="layoutWidget">
@@ -335,7 +335,7 @@
        <rect>
         <x>10</x>
         <y>70</y>
-        <width>351</width>
+        <width>415</width>
         <height>101</height>
        </rect>
       </property>
@@ -611,7 +611,7 @@
        <rect>
         <x>10</x>
         <y>70</y>
-        <width>351</width>
+        <width>352</width>
         <height>121</height>
        </rect>
       </property>
@@ -834,7 +834,7 @@
        <string>Back</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -859,7 +859,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>280</x>
@@ -902,7 +902,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>520</x>
