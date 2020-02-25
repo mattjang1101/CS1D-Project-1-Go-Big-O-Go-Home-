@@ -408,6 +408,23 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
+       <item row="1" column="0">
+        <widget class="QComboBox" name="StartingPointBox"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="AddQueueButton">
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="DeleteQueueButton">
+         <property name="text">
+          <string>Delete</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="CurrentLabel">
          <property name="font">
@@ -423,20 +440,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QComboBox" name="StartingPointBox"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="AddQueueButton">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="SortQueue">
          <property name="text">
-          <string>Add</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="DeleteQueueButton">
-         <property name="text">
-          <string>Delete</string>
+          <string>Sort</string>
          </property>
         </widget>
        </item>
