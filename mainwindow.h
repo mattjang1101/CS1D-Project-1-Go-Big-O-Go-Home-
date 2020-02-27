@@ -94,6 +94,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QVector<QString> selectedCollegesVector;
     Admin adminObj; // represents adminObj of class: Admin
     DBManager databaseObj;
 
