@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="MainMenu">
      <widget class="QWidget" name="layoutWidget">
@@ -335,7 +335,7 @@
        <rect>
         <x>10</x>
         <y>70</y>
-        <width>415</width>
+        <width>351</width>
         <height>101</height>
        </rect>
       </property>
@@ -408,6 +408,23 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
+       <item row="1" column="0">
+        <widget class="QComboBox" name="StartingPointBox"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="AddQueueButton">
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="DeleteQueueButton">
+         <property name="text">
+          <string>Delete</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="CurrentLabel">
          <property name="font">
@@ -423,20 +440,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QComboBox" name="StartingPointBox"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="AddQueueButton">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="SortQueue">
          <property name="text">
-          <string>Add</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="DeleteQueueButton">
-         <property name="text">
-          <string>Delete</string>
+          <string>Sort</string>
          </property>
         </widget>
        </item>
@@ -611,7 +618,7 @@
        <rect>
         <x>10</x>
         <y>70</y>
-        <width>352</width>
+        <width>351</width>
         <height>121</height>
        </rect>
       </property>
@@ -834,7 +841,7 @@
        <string>Back</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -859,7 +866,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>280</x>
@@ -902,7 +909,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>520</x>

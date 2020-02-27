@@ -79,6 +79,8 @@ private slots:
 
 
 
+    void on_SortQueue_clicked();
+
 private:
     Ui::MainWindow *ui;
     Admin adminObj; // represents adminObj of class: Admin
