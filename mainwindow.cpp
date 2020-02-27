@@ -144,11 +144,14 @@ void MainWindow::on_SelectStartingCollegeButton_3_clicked()
 {
     ui->StartingPointBox->setModel(databaseObj.loadStartingCollegeList());
     ui->QueueTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    Delete_Tour_Data();     // Deletes TourData table so it can be reused
+    ui->QueueTableView->setModel(databaseObj.loadTourQueueData());  // clears TourTableView
+     DeleteAlreadyVisitedCollegesTable();     // Will clear the AlreadyVisitedColleges table
 }
 
 void MainWindow::on_AddQueueButton_clicked()
 {
-
     QString AddToQueue = ui->StartingPointBox->currentText();
 
     QSqlQuery qry;
@@ -186,11 +189,63 @@ void MainWindow::on_DeleteQueueButton_clicked()
     ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
 }
 
+/*on_SortQueue_clicked() - Once clicked, it will sort the Queue Table View by
+order of efficiency */
+void MainWindow::on_SortQueue_clicked()
+{
+    QVector<QString> collegesVector;    // vector to store all colleges that the student wants to visit
+    QSqlQuery qry;
+
+    // Gets all the colleges from TourData table
+    qry.prepare("Select Queue from TourData");
+    if(!qry.exec()) {
+        qDebug() <<"Error! Could not retrieve colleges from TourData. . ." << endl;
+    }
+
+    // Stores all the colleges from TourData table into the vector
+    while(qry.next()) {
+        collegesVector.append(qry.value(0).toString());
+    }
+
+    // Inserts into the already visited colleges table the first college
+    QString startingCollege = collegesVector.at(0);    // Gets first college from table
+    qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
+    if(!qry.exec()) {
+         qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
+    }
+
+    databaseObj.BeginTrip(startingCollege, collegesVector);
+
+    ui->QueueTableView->setModel(databaseObj.loadAlreadyVisitedCollegesTable());
+}
+
+
 void MainWindow::on_backButton_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+/* Delete_Tour_Data() - Will clear everything from TourData table
+ */
+void MainWindow::Delete_Tour_Data()
+{
+    QSqlQuery qry;
+    qry.prepare("DELETE FROM TourData;");
+    if(!qry.exec()) {
+        qDebug() << "Can't delete from TourData";
+    }
+}
+
+/* DeleteAlreadyVisitedTable() - Will clear everything from AlreadyVisitedTable
+ */
+void MainWindow::DeleteAlreadyVisitedCollegesTable()
+{
+    QSqlQuery qry;
+    qry.prepare("DELETE FROM AlreadyVisitedColleges;");
+    if(!qry.exec()) {
+        qDebug() << "Can't delete from AlreadyVisitedColleges table!";
+    }
+}
 
     //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
 
@@ -206,8 +261,3 @@ void MainWindow::on_LoadData_clicked()
     ui->PrePQueueTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-
-void MainWindow::on_SortQueue_clicked()
-{
-
-}

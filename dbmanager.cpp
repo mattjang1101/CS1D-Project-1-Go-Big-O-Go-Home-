@@ -4,7 +4,7 @@ DBManager::DBManager()
 {
     // Connecting to database
     m_database = QSqlDatabase::addDatabase("QSQLITE");
-    m_database.setDatabaseName("/Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-/CS1DProject1.db");
+    m_database.setDatabaseName("C:/Users/hyunm/OneDrive/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-/CS1DProject1.db");
     //C:/Users/hyunm/OneDrive/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-     // Matt's
 //    /Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-            // Lamson's
     if(!m_database.open())
@@ -114,4 +114,59 @@ QSqlQueryModel *DBManager::loadNextDestination()
     model->setQuery(qry);
 
     return model;
+}
+
+// loadAlreadyVisitedCollegesTable() - Returns a QSqlQueryModel consisting of information from AlreadyVisitedColleges table
+QSqlQueryModel *DBManager::loadAlreadyVisitedCollegesTable()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT CollegeName from AlreadyVisitedColleges;");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+/* BeginTrip() - Will recursively order the trip in terms of efficiency
+ */
+void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVector)
+{
+    QSqlQuery qry;
+    collegesVector.pop_front(); // pops front of the vector
+
+    // Base case: if vector is empty, exit
+    if(collegesVector.isEmpty()) {
+        return;
+    }
+
+    // General case
+    QString closestCollege;
+    qry.prepare("Select endingCollege from CollegeDistances where distanceBetween = "
+                "(Select min(distanceBetween) from CollegeDistances where startingCollege = '"+startingCollege+"' and "
+                "endingCollege not in (Select CollegeName from AlreadyVisitedColleges) and endingCollege in "
+                "(Select Queue from TourData)) and startingCollege = '"+startingCollege+"';");
+
+    // Stores the closest college into the string
+    if(!qry.exec()) {
+        qDebug() << "Can't execute closes college sql statement!";
+    }
+    if(qry.next()) {
+        closestCollege = qry.value(0).toString();
+     }
+
+    // Insert into AlreadyVisitedColleges table the closest college
+    qry.prepare("Insert into AlreadyVisitedColleges(CollegeName) VALUES('"+closestCollege+"');");
+    if(!qry.exec()) {
+        qDebug() << "Can't insert closestCollege into AlreadyVisitedColleges";
+    }
+
+    startingCollege = closestCollege;
+    BeginTrip(startingCollege, collegesVector);
 }
