@@ -36,7 +36,7 @@ public:
     // loadAlreadyVisitedCollegesTable() - Returns a QSqlQueryModel consisting of information from AlreadyVisitedColleges table
     QSqlQueryModel *loadAlreadyVisitedCollegesTable();
 
-    void BeginTrip(QString startingCollege, QVector<QString> collegesVector);
+    void BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance);
 
 
 

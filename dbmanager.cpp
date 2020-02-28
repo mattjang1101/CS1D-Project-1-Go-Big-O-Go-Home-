@@ -135,7 +135,7 @@ QSqlQueryModel *DBManager::loadAlreadyVisitedCollegesTable()
 }
 
 // BeginTrip() - Will recursively order the trip in terms of efficiency
-void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVector)
+void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance)
 {
     QSqlQuery qry;
     collegesVector.pop_front(); // pops front of the vector
@@ -160,6 +160,19 @@ void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVect
         closestCollege = qry.value(0).toString();
      }
 
+    // Will accumulate distance traveled from startingCollege to closestCollege
+    qry.prepare("Select distanceBetween from CollegeDistances where startingCollege = '"+startingCollege+"' and endingCollege = '"+closestCollege+"';");
+    if(!qry.exec()) {
+        qDebug() << "Can't compute total distance!";
+    }
+    double distanceTraveled;
+    if(qry.next()) {
+       distanceTraveled = qry.value(0).toDouble();
+    }
+    totalDistance += distanceTraveled;
+    qDebug() << totalDistance;
+
+
     // Insert into AlreadyVisitedColleges table the closest college
     qry.prepare("Insert into AlreadyVisitedColleges(CollegeName) VALUES('"+closestCollege+"');");
     if(!qry.exec()) {
@@ -168,5 +181,5 @@ void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVect
 
     // changes startingCollege to be closestCollege, and calls the function again
     startingCollege = closestCollege;
-    BeginTrip(startingCollege, collegesVector);
+    BeginTrip(startingCollege, collegesVector, totalDistance);
 }

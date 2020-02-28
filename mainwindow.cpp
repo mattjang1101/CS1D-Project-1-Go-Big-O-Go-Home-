@@ -149,6 +149,7 @@ void MainWindow::on_SelectStartingCollegeButton_3_clicked()
     ui->QueueTableView->setModel(databaseObj.loadTourQueueData());  // clears TourTableView
     DeleteAlreadyVisitedCollegesTable();        // Will clear the AlreadyVisitedColleges table
     selectedCollegesVector.clear();             // clears the selected colleges vector
+    ui->DistanceNumber->display("0");           // Initially sets the DistanceNumber widget to be 0
 }
 
 void MainWindow::on_AddQueueButton_clicked()
@@ -217,14 +218,18 @@ void MainWindow::on_SortQueue_clicked()
 
     // Inserts into the already visited colleges table the first college
     QString startingCollege = selectedCollegesVector.at(0);    // Gets first college from table
+
     qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
     if(!qry.exec()) {
          qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
     }
 
-    databaseObj.BeginTrip(startingCollege, selectedCollegesVector);
+    double totalDistance = 0;
 
-    ui->QueueTableView->setModel(databaseObj.loadAlreadyVisitedCollegesTable());
+    databaseObj.BeginTrip(startingCollege, selectedCollegesVector, totalDistance);
+
+    ui->QueueTableView->setModel(databaseObj.loadAlreadyVisitedCollegesTable());    // Displays newly sorted table
+    ui->DistanceNumber->display(QString::number(totalDistance));    // Displays the totalDistance onto the DistanceNumber widget
 }
 
 
