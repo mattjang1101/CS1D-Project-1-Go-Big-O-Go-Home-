@@ -214,6 +214,12 @@ void MainWindow::on_DeleteQueueButton_clicked()
 order of efficiency */
 void MainWindow::on_SortQueue_clicked()
 {
+    // If the user clicks sort without selecting any colleges, then an error message will be displayed
+    if(selectedCollegesVector.isEmpty()) {
+       QMessageBox::warning(this, "Warning", "Please selecte a college");
+       return;
+    }
+
     QSqlQuery qry;
 
     // Inserts into the already visited colleges table the first college
