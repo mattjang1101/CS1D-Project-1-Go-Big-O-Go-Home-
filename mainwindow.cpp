@@ -147,12 +147,22 @@ void MainWindow::on_SelectStartingCollegeButton_3_clicked()
 
     Delete_Tour_Data();     // Deletes TourData table so it can be reused
     ui->QueueTableView->setModel(databaseObj.loadTourQueueData());  // clears TourTableView
-     DeleteAlreadyVisitedCollegesTable();     // Will clear the AlreadyVisitedColleges table
+    DeleteAlreadyVisitedCollegesTable();     // Will clear the AlreadyVisitedColleges table
+    selectedCollegesVector.clear();
 }
 
 void MainWindow::on_AddQueueButton_clicked()
 {
     QString AddToQueue = ui->StartingPointBox->currentText();
+
+    // If the vector already contains the college, then it won't add
+    // Otherwise, it adds
+    if(selectedCollegesVector.contains(AddToQueue)) {
+        qDebug() << "Can't add duplicates!";
+    }
+    else {
+        selectedCollegesVector.append(AddToQueue);
+    }
 
     QSqlQuery qry;
     qry.prepare("INSERT INTO TourData(Queue) VALUES('"+AddToQueue+"')");
@@ -164,7 +174,9 @@ void MainWindow::on_AddQueueButton_clicked()
     else
         qDebug() << "Successful insertion into Database" << endl;
 
-    ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
+   // ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
+    ui->QueueTableView->setModel(new QStringListModel(QList<QString>::fromVector(selectedCollegesVector)));
+
 
 //    qry.prepare("SELECT COUNT(Queue)  FROM TourData");                    *GETS COUNT OF Queue COLUMN*
 }
@@ -186,6 +198,7 @@ void MainWindow::on_DeleteQueueButton_clicked()
 
     }
 
+    selectedCollegesVector.pop_back();  // removes the recently added college
     ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
 }
 
@@ -193,28 +206,28 @@ void MainWindow::on_DeleteQueueButton_clicked()
 order of efficiency */
 void MainWindow::on_SortQueue_clicked()
 {
-    QVector<QString> collegesVector;    // vector to store all colleges that the student wants to visit
+    // QVector<QString> collegesVector;    // vector to store all colleges that the student wants to visit
     QSqlQuery qry;
 
     // Gets all the colleges from TourData table
-    qry.prepare("Select Queue from TourData");
-    if(!qry.exec()) {
-        qDebug() <<"Error! Could not retrieve colleges from TourData. . ." << endl;
-    }
+//    qry.prepare("Select Queue from TourData");
+//    if(!qry.exec()) {
+//        qDebug() <<"Error! Could not retrieve colleges from TourData. . ." << endl;
+//    }
 
-    // Stores all the colleges from TourData table into the vector
-    while(qry.next()) {
-        collegesVector.append(qry.value(0).toString());
-    }
+//    // Stores all the colleges from TourData table into the vector
+//    while(qry.next()) {
+//        collegesVector.append(qry.value(0).toString());
+//    }
 
     // Inserts into the already visited colleges table the first college
-    QString startingCollege = collegesVector.at(0);    // Gets first college from table
+    QString startingCollege = selectedCollegesVector.at(0);    // Gets first college from table
     qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
     if(!qry.exec()) {
          qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
     }
 
-    databaseObj.BeginTrip(startingCollege, collegesVector);
+    databaseObj.BeginTrip(startingCollege, selectedCollegesVector);
 
     ui->QueueTableView->setModel(databaseObj.loadAlreadyVisitedCollegesTable());
 }
