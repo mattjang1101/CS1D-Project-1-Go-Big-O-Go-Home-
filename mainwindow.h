@@ -76,12 +76,10 @@ private slots:
      order of efficiency */
     void on_SortQueue_clicked();
 
-    /* Delete_Tour_Data() - Will clear everything from TourData table
-     */
+    // Delete_Tour_Data() - Will clear everything from TourData table
     void Delete_Tour_Data();
 
-    /* DeleteAlreadyVisitedTable() - Will clear everything from AlreadyVisitedTable
-     */
+    // DeleteAlreadyVisitedTable() - Will clear everything from AlreadyVisitedTable
     void DeleteAlreadyVisitedCollegesTable();
 
 
@@ -94,8 +92,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QVector<QString> selectedCollegesVector;
-    Admin adminObj; // represents adminObj of class: Admin
+    QVector<QString> selectedCollegesVector;    // vector to store selected colleges
+    Admin adminObj;                             // represents adminObj of class: Admin
     DBManager databaseObj;
 
 
