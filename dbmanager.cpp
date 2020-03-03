@@ -115,3 +115,71 @@ QSqlQueryModel *DBManager::loadNextDestination()
 
     return model;
 }
+
+// loadAlreadyVisitedCollegesTable() - Returns a QSqlQueryModel consisting of information from AlreadyVisitedColleges table
+QSqlQueryModel *DBManager::loadAlreadyVisitedCollegesTable()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+    qry.prepare("SELECT CollegeName from AlreadyVisitedColleges;");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+// BeginTrip() - Will recursively order the trip in terms of efficiency
+void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance)
+{
+    QSqlQuery qry;
+    collegesVector.pop_front(); // pops front of the vector
+
+    // Base case: if vector is empty, exit
+    if(collegesVector.isEmpty()) {
+        return;
+    }
+
+    // General case
+    QString closestCollege;
+    qry.prepare("Select endingCollege from CollegeDistances where distanceBetween = "
+                "(Select min(distanceBetween) from CollegeDistances where startingCollege = '"+startingCollege+"' and "
+                "endingCollege not in (Select CollegeName from AlreadyVisitedColleges) and endingCollege in "
+                "(Select Queue from TourData)) and startingCollege = '"+startingCollege+"';");
+
+    // Stores the closest college into the string
+    if(!qry.exec()) {
+        qDebug() << "Can't execute closes college sql statement!";
+    }
+    if(qry.next()) {
+        closestCollege = qry.value(0).toString();
+     }
+
+    // Will accumulate distance traveled from startingCollege to closestCollege
+    qry.prepare("Select distanceBetween from CollegeDistances where startingCollege = '"+startingCollege+"' and endingCollege = '"+closestCollege+"';");
+    if(!qry.exec()) {
+        qDebug() << "Can't compute total distance!";
+    }
+    double distanceTraveled;
+    if(qry.next()) {
+       distanceTraveled = qry.value(0).toDouble();
+    }
+    totalDistance += distanceTraveled;
+    qDebug() << totalDistance;
+
+
+    // Insert into AlreadyVisitedColleges table the closest college
+    qry.prepare("Insert into AlreadyVisitedColleges(CollegeName) VALUES('"+closestCollege+"');");
+    if(!qry.exec()) {
+        qDebug() << "Can't insert closestCollege into AlreadyVisitedColleges";
+    }
+
+    // changes startingCollege to be closestCollege, and calls the function again
+    startingCollege = closestCollege;
+    BeginTrip(startingCollege, collegesVector, totalDistance);
+}
