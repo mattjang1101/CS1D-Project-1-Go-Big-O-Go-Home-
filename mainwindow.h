@@ -9,6 +9,7 @@
 #include <QObject>
 #include <admin.h>
 #include <QKeyEvent>
+#include <QVector>
 #include "dbmanager.h"
 
 QT_BEGIN_NAMESPACE
@@ -71,6 +72,17 @@ private slots:
 
     void on_backButton_2_clicked();
 
+    /* on_SortQueue_clicked() - Once clicked, it will sort the Queue Table View by
+     order of efficiency */
+    void on_SortQueue_clicked();
+
+    // Delete_Tour_Data() - Will clear everything from TourData table
+    void Delete_Tour_Data();
+
+    // DeleteAlreadyVisitedTable() - Will clear everything from AlreadyVisitedTable
+    void DeleteAlreadyVisitedCollegesTable();
+
+
     //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
 
     void on_backButton_6_clicked();
@@ -78,12 +90,10 @@ private slots:
     void on_LoadData_clicked();
 
 
-
-    void on_SortQueue_clicked();
-
 private:
     Ui::MainWindow *ui;
-    Admin adminObj; // represents adminObj of class: Admin
+    QVector<QString> selectedCollegesVector;    // vector to store selected colleges
+    Admin adminObj;                             // represents adminObj of class: Admin
     DBManager databaseObj;
 
 

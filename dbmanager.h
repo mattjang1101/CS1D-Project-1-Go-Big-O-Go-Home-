@@ -6,6 +6,7 @@
 #include <QObject>
 #include <string>
 #include <iostream>
+#include <QVector>
 using namespace std;
 
 class DBManager
@@ -31,6 +32,12 @@ public:
     QSqlQueryModel *loadStartingCollegeList();
     QSqlQueryModel *loadTourQueueData();
     QSqlQueryModel *loadNextDestination();
+
+    // loadAlreadyVisitedCollegesTable() - Returns a QSqlQueryModel consisting of information from AlreadyVisitedColleges table
+    QSqlQueryModel *loadAlreadyVisitedCollegesTable();
+
+    void BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance);
+
 
 
 private:
