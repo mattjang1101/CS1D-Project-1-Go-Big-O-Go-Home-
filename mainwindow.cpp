@@ -216,7 +216,7 @@ void MainWindow::on_SortQueue_clicked()
 {
     // If the user clicks sort without selecting any colleges, then an error message will be displayed
     if(selectedCollegesVector.isEmpty()) {
-       QMessageBox::warning(this, "Warning", "Please selecte a college");
+       QMessageBox::warning(this, "Warning", "Please select a college");
        return;
     }
 
@@ -266,8 +266,91 @@ void MainWindow::DeleteAlreadyVisitedCollegesTable()
     }
 }
 
-    //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
+    // DepartButton() - Will officially start the trip
+void MainWindow::on_DepartButton_clicked()
+{
+    // selects colleges from AlreadyVisitedColleges table
+    QSqlQuery qry;
+    qry.prepare("Select CollegeName from AlreadyVisitedColleges;");
 
+    if(!qry.exec()) {
+        qDebug() << "Can't add sorted colleges to vector!";
+    }
+
+    // appends newly sorted colleges into the vector
+    selectedCollegesVector.clear();
+    while(qry.next()) {
+        selectedCollegesVector.append(qry.value(0).toString());
+    }
+
+    // If user doesn't have any colleges, then an error message will appear
+    if(selectedCollegesVector.isEmpty()) {
+       QMessageBox::warning(this, "Warning", "Please select a college");
+       return;
+    }
+
+    ui->stackedWidget->setCurrentWidget(ui->CampusPage);            // changes page to CampusPage
+
+    QString firstCollege = selectedCollegesVector.at(0);
+    ui->collegeNameLabel->setText(firstCollege);    // sets collegeName label to be first college's name
+
+    // PROCESSING - Sets pixel depending on what college the first college is
+    QString pixelPath;
+    if(firstCollege == "Arizona State University") {
+       pixelPath = ":/Images/College Images/Arizona state.jpg";
+    }
+    else if(firstCollege == "Massachusetts Institute of Technology (MIT)") {
+       pixelPath = ":/Images/College Images/MIT.jpg";
+    }
+    else if(firstCollege == "Northwestern") {
+       pixelPath = ":/Images/College Images/Northwestern.jpg";
+    }
+    else if(firstCollege == "Ohio State University") {
+       pixelPath = ":/Images/College Images/Ohio state.jpg";
+    }
+    else if(firstCollege == "Saddleback College") {
+       pixelPath = ":/Images/College Images/Saddleback college.jpg";
+    }
+    else if(firstCollege == "University of  Michigan") {
+       pixelPath = ":/Images/College Images/University of Michigan.jpg";
+    }
+    else if(firstCollege == "University of California, Irvine (UCI)") {
+       pixelPath = ":/Images/College Images/UCI.jpg";
+    }
+    else if(firstCollege == "University of California, Los Angeles (UCLA)") {
+       pixelPath = ":/Images/College Images/UCLA.jpg";
+    }
+    else if(firstCollege == "University of Oregon") {
+       pixelPath = ":/Images/College Images/University of Oregon.jpg";
+    }
+    else if(firstCollege == "University of Wisconsin") {
+       pixelPath = ":/Images/College Images/University of Wisconsin.jpg";
+    }
+    else if(firstCollege == "University of the Pacific") {
+       pixelPath = ":/Images/College Images/University of the Pacific.jpg";
+    }
+    else if(firstCollege == "California State University, Fullerton") {
+       pixelPath = ":/Images/College Images/Cal state fullerton.jpg";
+    }
+    else if(firstCollege == "University of Texas") {
+       pixelPath = ":/Images/College Images/University of Texas.jpg";
+    }
+
+    QPixmap pix(pixelPath);
+    int w = ui->collegePicturesLabel->width();
+    int h = ui->collegePicturesLabel->height();
+    ui->collegePicturesLabel->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+
+}
+
+
+void MainWindow::on_backButton_7_clicked()
+{
+    on_backButton_6_clicked();
+}
+
+
+    //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
 
 void MainWindow::on_backButton_6_clicked()
 {

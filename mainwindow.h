@@ -82,12 +82,18 @@ private slots:
     // DeleteAlreadyVisitedTable() - Will clear everything from AlreadyVisitedTable
     void DeleteAlreadyVisitedCollegesTable();
 
+    // DepartButton() - Will officially start the trip
+    void on_DepartButton_clicked();
+
+    void on_backButton_7_clicked();
+
 
     //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
 
     void on_backButton_6_clicked();
 
     void on_LoadData_clicked();
+
 
 
 private:
