@@ -4,7 +4,7 @@ DBManager::DBManager()
 {
     // Connecting to database
     m_database = QSqlDatabase::addDatabase("QSQLITE");
-    m_database.setDatabaseName("/Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-/CS1DProject1.db");
+    m_database.setDatabaseName("C:/Users/hyunm/Desktop/Temp/CS1D-Project-1-Go-Big-O-Go-Home--matt/CS1DProject1.db");
     //C:/Users/hyunm/OneDrive/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-     // Matt's
 //    /Users/LamsonBui/Documents/GitHub/CS1D-Project-1-Go-Big-O-Go-Home-            // Lamson's
     if(!m_database.open())
@@ -132,6 +132,50 @@ QSqlQueryModel *DBManager::loadAlreadyVisitedCollegesTable()
     model->setQuery(qry);
 
     return model;
+}
+
+QSqlQueryModel *DBManager::LoadSouvenirsByCollege(QString collegeName, bool souvenirsOnly)
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+
+    if(!souvenirsOnly) {
+        qry.prepare("SELECT * from Souvenirs where college = '"+collegeName+"';");
+    }
+    else {
+        qry.prepare("Select traditionalSouvenirs from Souvenirs where college = '"+collegeName+"';");
+    }
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+    // GetSouvenirPrice() - Returns price of the corresponding item at a given college
+double DBManager::GetSouvenirPrice(QString collegeName, QString itemName)
+{
+    double price;
+    QSqlQuery qry;
+
+    qry.prepare("select printf(\"%.2f\", sum(cost)) as \"Price\" from Souvenirs where college = '"+collegeName+"' "
+                "and traditionalSouvenirs = '"+itemName+"';");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+
+    if(qry.next()) {
+        price = qry.value(0).toDouble();
+    }
+    return price;
 }
 
 // BeginTrip() - Will recursively order the trip in terms of efficiency
