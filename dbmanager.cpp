@@ -134,6 +134,50 @@ QSqlQueryModel *DBManager::loadAlreadyVisitedCollegesTable()
     return model;
 }
 
+QSqlQueryModel *DBManager::LoadSouvenirsByCollege(QString collegeName, bool souvenirsOnly)
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+
+    QSqlQuery qry;
+
+    if(!souvenirsOnly) {
+        qry.prepare("SELECT * from Souvenirs where college = '"+collegeName+"';");
+    }
+    else {
+        qry.prepare("Select traditionalSouvenirs from Souvenirs where college = '"+collegeName+"';");
+    }
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+    model->setQuery(qry);
+
+    return model;
+}
+
+    // GetSouvenirPrice() - Returns price of the corresponding item at a given college
+double DBManager::GetSouvenirPrice(QString collegeName, QString itemName)
+{
+    double price;
+    QSqlQuery qry;
+
+    qry.prepare("select printf(\"%.2f\", sum(cost)) as \"Price\" from Souvenirs where college = '"+collegeName+"' "
+                "and traditionalSouvenirs = '"+itemName+"';");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"error Loading values to db" << endl;
+
+    }
+
+    if(qry.next()) {
+        price = qry.value(0).toDouble();
+    }
+    return price;
+}
+
 // BeginTrip() - Will recursively order the trip in terms of efficiency
 void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance)
 {

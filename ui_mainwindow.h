@@ -14,7 +14,6 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
@@ -23,6 +22,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -114,25 +114,24 @@ public:
     QLCDNumber *DistanceLCDctr;
     QWidget *CampusPage;
     QDateEdit *dateEdit;
-    QTableView *tableView_2;
+    QTableView *souvenirTableView;
     QPushButton *backButton_7;
     QWidget *layoutWidget5;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label_7;
-    QLCDNumber *lcdNumber;
-    QWidget *layoutWidget6;
     QVBoxLayout *verticalLayout_3;
-    QPushButton *pushButton;
-    QComboBox *comboBox;
+    QPushButton *loadSouvenirButton;
+    QComboBox *souvenirComboBox;
     QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
-    QWidget *layoutWidget7;
+    QPushButton *deleteSouvenirsButton;
+    QPushButton *purchaseSouvenirsButton;
+    QWidget *layoutWidget6;
     QVBoxLayout *verticalLayout_4;
-    QLabel *label_8;
-    QPushButton *pushButton_5;
     QLabel *collegeNameLabel;
     QLabel *collegePicturesLabel;
+    QLabel *label_8;
+    QPushButton *nextCollegeButton;
+    QTextBrowser *collegeDescriptionTextBrowser;
+    QLabel *label_7;
+    QLCDNumber *priceLCDNumber;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -554,79 +553,52 @@ public:
         dateEdit = new QDateEdit(CampusPage);
         dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
         dateEdit->setGeometry(QRect(660, 10, 111, 22));
-        tableView_2 = new QTableView(CampusPage);
-        tableView_2->setObjectName(QString::fromUtf8("tableView_2"));
-        tableView_2->setGeometry(QRect(50, 310, 191, 271));
+        souvenirTableView = new QTableView(CampusPage);
+        souvenirTableView->setObjectName(QString::fromUtf8("souvenirTableView"));
+        souvenirTableView->setGeometry(QRect(10, 280, 321, 271));
         backButton_7 = new QPushButton(CampusPage);
         backButton_7->setObjectName(QString::fromUtf8("backButton_7"));
         backButton_7->setGeometry(QRect(10, 10, 71, 32));
         layoutWidget5 = new QWidget(CampusPage);
         layoutWidget5->setObjectName(QString::fromUtf8("layoutWidget5"));
-        layoutWidget5->setGeometry(QRect(270, 530, 171, 51));
-        horizontalLayout = new QHBoxLayout(layoutWidget5);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_7 = new QLabel(layoutWidget5);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        horizontalLayout->addWidget(label_7);
-
-        lcdNumber = new QLCDNumber(layoutWidget5);
-        lcdNumber->setObjectName(QString::fromUtf8("lcdNumber"));
-
-        horizontalLayout->addWidget(lcdNumber);
-
-        layoutWidget6 = new QWidget(CampusPage);
-        layoutWidget6->setObjectName(QString::fromUtf8("layoutWidget6"));
-        layoutWidget6->setGeometry(QRect(280, 310, 151, 174));
-        verticalLayout_3 = new QVBoxLayout(layoutWidget6);
+        layoutWidget5->setGeometry(QRect(350, 310, 151, 174));
+        verticalLayout_3 = new QVBoxLayout(layoutWidget5);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(layoutWidget6);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        loadSouvenirButton = new QPushButton(layoutWidget5);
+        loadSouvenirButton->setObjectName(QString::fromUtf8("loadSouvenirButton"));
 
-        verticalLayout_3->addWidget(pushButton);
+        verticalLayout_3->addWidget(loadSouvenirButton);
 
-        comboBox = new QComboBox(layoutWidget6);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        souvenirComboBox = new QComboBox(layoutWidget5);
+        souvenirComboBox->setObjectName(QString::fromUtf8("souvenirComboBox"));
 
-        verticalLayout_3->addWidget(comboBox);
+        verticalLayout_3->addWidget(souvenirComboBox);
 
-        pushButton_2 = new QPushButton(layoutWidget6);
+        pushButton_2 = new QPushButton(layoutWidget5);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         verticalLayout_3->addWidget(pushButton_2);
 
-        pushButton_3 = new QPushButton(layoutWidget6);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        deleteSouvenirsButton = new QPushButton(layoutWidget5);
+        deleteSouvenirsButton->setObjectName(QString::fromUtf8("deleteSouvenirsButton"));
 
-        verticalLayout_3->addWidget(pushButton_3);
+        verticalLayout_3->addWidget(deleteSouvenirsButton);
 
-        pushButton_4 = new QPushButton(layoutWidget6);
-        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        purchaseSouvenirsButton = new QPushButton(layoutWidget5);
+        purchaseSouvenirsButton->setObjectName(QString::fromUtf8("purchaseSouvenirsButton"));
 
-        verticalLayout_3->addWidget(pushButton_4);
+        verticalLayout_3->addWidget(purchaseSouvenirsButton);
 
-        layoutWidget7 = new QWidget(CampusPage);
-        layoutWidget7->setObjectName(QString::fromUtf8("layoutWidget7"));
-        layoutWidget7->setGeometry(QRect(520, 310, 265, 59));
-        verticalLayout_4 = new QVBoxLayout(layoutWidget7);
+        layoutWidget6 = new QWidget(CampusPage);
+        layoutWidget6->setObjectName(QString::fromUtf8("layoutWidget6"));
+        layoutWidget6->setGeometry(QRect(570, 430, 265, 59));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget6);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        label_8 = new QLabel(layoutWidget7);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-
-        verticalLayout_4->addWidget(label_8);
-
-        pushButton_5 = new QPushButton(layoutWidget7);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-
-        verticalLayout_4->addWidget(pushButton_5);
-
         collegeNameLabel = new QLabel(CampusPage);
         collegeNameLabel->setObjectName(QString::fromUtf8("collegeNameLabel"));
-        collegeNameLabel->setGeometry(QRect(270, 20, 231, 51));
+        collegeNameLabel->setGeometry(QRect(91, 21, 371, 19));
         QFont font4;
         font4.setPointSize(12);
         font4.setBold(true);
@@ -634,7 +606,27 @@ public:
         collegeNameLabel->setFont(font4);
         collegePicturesLabel = new QLabel(CampusPage);
         collegePicturesLabel->setObjectName(QString::fromUtf8("collegePicturesLabel"));
-        collegePicturesLabel->setGeometry(QRect(170, 70, 431, 201));
+        collegePicturesLabel->setGeometry(QRect(91, 49, 391, 201));
+        label_8 = new QLabel(CampusPage);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setGeometry(QRect(570, 430, 263, 28));
+        nextCollegeButton = new QPushButton(CampusPage);
+        nextCollegeButton->setObjectName(QString::fromUtf8("nextCollegeButton"));
+        nextCollegeButton->setGeometry(QRect(570, 464, 263, 23));
+        collegeDescriptionTextBrowser = new QTextBrowser(CampusPage);
+        collegeDescriptionTextBrowser->setObjectName(QString::fromUtf8("collegeDescriptionTextBrowser"));
+        collegeDescriptionTextBrowser->setGeometry(QRect(530, 60, 321, 341));
+        QFont font5;
+        font5.setPointSize(11);
+        collegeDescriptionTextBrowser->setFont(font5);
+        label_7 = new QLabel(CampusPage);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(370, 550, 31, 16));
+        label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        priceLCDNumber = new QLCDNumber(CampusPage);
+        priceLCDNumber->setObjectName(QString::fromUtf8("priceLCDNumber"));
+        priceLCDNumber->setGeometry(QRect(429, 531, 151, 49));
+        priceLCDNumber->setDigitCount(7);
         stackedWidget->addWidget(CampusPage);
         MainWindow->setCentralWidget(centralwidget);
 
@@ -708,15 +700,15 @@ public:
         DepartButton_12->setText(QCoreApplication::translate("MainWindow", "Depart", nullptr));
         DistanceLabel_12->setText(QCoreApplication::translate("MainWindow", "Distance (miles)", nullptr));
         backButton_7->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "Total: ", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Load Data", nullptr));
+        loadSouvenirButton->setText(QCoreApplication::translate("MainWindow", "Load Data", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "Purchase", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "Move on to the next Campus in Queue. . . ", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("MainWindow", "Next", nullptr));
+        deleteSouvenirsButton->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
+        purchaseSouvenirsButton->setText(QCoreApplication::translate("MainWindow", "Purchase", nullptr));
         collegeNameLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         collegePicturesLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "Move on to the next Campus in Queue. . . ", nullptr));
+        nextCollegeButton->setText(QCoreApplication::translate("MainWindow", "Next", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "Total: ", nullptr));
     } // retranslateUi
 
 };

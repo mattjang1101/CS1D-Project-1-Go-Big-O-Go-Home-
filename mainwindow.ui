@@ -788,12 +788,12 @@
        </rect>
       </property>
      </widget>
-     <widget class="QTableView" name="tableView_2">
+     <widget class="QTableView" name="souvenirTableView">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>310</y>
-        <width>191</width>
+        <x>10</x>
+        <y>280</y>
+        <width>321</width>
         <height>271</height>
        </rect>
       </property>
@@ -814,32 +814,7 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>530</y>
-        <width>171</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>Total: </string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLCDNumber" name="lcdNumber"/>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
+        <x>350</x>
         <y>310</y>
         <width>151</width>
         <height>174</height>
@@ -847,14 +822,14 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="loadSouvenirButton">
          <property name="text">
           <string>Load Data</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="souvenirComboBox"/>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_2">
@@ -864,14 +839,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="deleteSouvenirsButton">
          <property name="text">
           <string>Delete</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="purchaseSouvenirsButton">
          <property name="text">
           <string>Purchase</string>
          </property>
@@ -882,36 +857,21 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>520</x>
-        <y>310</y>
+        <x>570</x>
+        <y>430</y>
         <width>265</width>
         <height>59</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>Move on to the next Campus in Queue. . . </string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_5">
-         <property name="text">
-          <string>Next</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QVBoxLayout" name="verticalLayout_4"/>
      </widget>
      <widget class="QLabel" name="collegeNameLabel">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>20</y>
-        <width>231</width>
-        <height>51</height>
+        <x>91</x>
+        <y>21</y>
+        <width>371</width>
+        <height>19</height>
        </rect>
       </property>
       <property name="font">
@@ -928,14 +888,84 @@
      <widget class="QLabel" name="collegePicturesLabel">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>70</y>
-        <width>431</width>
+        <x>91</x>
+        <y>49</y>
+        <width>391</width>
         <height>201</height>
        </rect>
       </property>
       <property name="text">
        <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>430</y>
+        <width>263</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Move on to the next Campus in Queue. . . </string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nextCollegeButton">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>464</y>
+        <width>263</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="collegeDescriptionTextBrowser">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>60</y>
+        <width>321</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>550</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total: </string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLCDNumber" name="priceLCDNumber">
+      <property name="geometry">
+       <rect>
+        <x>429</x>
+        <y>531</y>
+        <width>151</width>
+        <height>49</height>
+       </rect>
+      </property>
+      <property name="digitCount">
+       <number>7</number>
       </property>
      </widget>
     </widget>
