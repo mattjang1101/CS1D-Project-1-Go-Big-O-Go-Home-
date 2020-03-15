@@ -778,16 +778,6 @@
      </widget>
     </widget>
     <widget class="QWidget" name="CampusPage">
-     <widget class="QDateEdit" name="dateEdit">
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>10</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QTableView" name="souvenirTableView">
       <property name="geometry">
        <rect>
@@ -832,9 +822,9 @@
         <widget class="QComboBox" name="souvenirComboBox"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="purchaseSouvenirsButton">
          <property name="text">
-          <string>Add</string>
+          <string>Purchase</string>
          </property>
         </widget>
        </item>
@@ -842,13 +832,6 @@
         <widget class="QPushButton" name="deleteSouvenirsButton">
          <property name="text">
           <string>Delete</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="purchaseSouvenirsButton">
-         <property name="text">
-          <string>Purchase</string>
          </property>
         </widget>
        </item>

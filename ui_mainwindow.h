@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
@@ -113,16 +112,14 @@ public:
     QLabel *DistanceLabel_12;
     QLCDNumber *DistanceLCDctr;
     QWidget *CampusPage;
-    QDateEdit *dateEdit;
     QTableView *souvenirTableView;
     QPushButton *backButton_7;
     QWidget *layoutWidget5;
     QVBoxLayout *verticalLayout_3;
     QPushButton *loadSouvenirButton;
     QComboBox *souvenirComboBox;
-    QPushButton *pushButton_2;
-    QPushButton *deleteSouvenirsButton;
     QPushButton *purchaseSouvenirsButton;
+    QPushButton *deleteSouvenirsButton;
     QWidget *layoutWidget6;
     QVBoxLayout *verticalLayout_4;
     QLabel *collegeNameLabel;
@@ -550,9 +547,6 @@ public:
         stackedWidget->addWidget(PrePlannedMenu);
         CampusPage = new QWidget();
         CampusPage->setObjectName(QString::fromUtf8("CampusPage"));
-        dateEdit = new QDateEdit(CampusPage);
-        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
-        dateEdit->setGeometry(QRect(660, 10, 111, 22));
         souvenirTableView = new QTableView(CampusPage);
         souvenirTableView->setObjectName(QString::fromUtf8("souvenirTableView"));
         souvenirTableView->setGeometry(QRect(10, 280, 321, 271));
@@ -575,20 +569,15 @@ public:
 
         verticalLayout_3->addWidget(souvenirComboBox);
 
-        pushButton_2 = new QPushButton(layoutWidget5);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        purchaseSouvenirsButton = new QPushButton(layoutWidget5);
+        purchaseSouvenirsButton->setObjectName(QString::fromUtf8("purchaseSouvenirsButton"));
 
-        verticalLayout_3->addWidget(pushButton_2);
+        verticalLayout_3->addWidget(purchaseSouvenirsButton);
 
         deleteSouvenirsButton = new QPushButton(layoutWidget5);
         deleteSouvenirsButton->setObjectName(QString::fromUtf8("deleteSouvenirsButton"));
 
         verticalLayout_3->addWidget(deleteSouvenirsButton);
-
-        purchaseSouvenirsButton = new QPushButton(layoutWidget5);
-        purchaseSouvenirsButton->setObjectName(QString::fromUtf8("purchaseSouvenirsButton"));
-
-        verticalLayout_3->addWidget(purchaseSouvenirsButton);
 
         layoutWidget6 = new QWidget(CampusPage);
         layoutWidget6->setObjectName(QString::fromUtf8("layoutWidget6"));
@@ -701,9 +690,8 @@ public:
         DistanceLabel_12->setText(QCoreApplication::translate("MainWindow", "Distance (miles)", nullptr));
         backButton_7->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         loadSouvenirButton->setText(QCoreApplication::translate("MainWindow", "Load Data", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
-        deleteSouvenirsButton->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         purchaseSouvenirsButton->setText(QCoreApplication::translate("MainWindow", "Purchase", nullptr));
+        deleteSouvenirsButton->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         collegeNameLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         collegePicturesLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Move on to the next Campus in Queue. . . ", nullptr));
