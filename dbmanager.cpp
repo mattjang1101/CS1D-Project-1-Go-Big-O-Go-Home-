@@ -227,3 +227,4 @@ void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVect
     startingCollege = closestCollege;
     BeginTrip(startingCollege, collegesVector, totalDistance);
 }
+

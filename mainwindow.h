@@ -114,6 +114,11 @@ private slots:
 
     void on_SortAmount_clicked();
 
+
+    void on_DeleteButton_clicked();
+
+    void on_DepartButton_12_clicked();
+
 private:
     Ui::MainWindow *ui;
     QVector<QString> selectedCollegesVector;    // vector to store selected colleges

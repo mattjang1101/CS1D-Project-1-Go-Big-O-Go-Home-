@@ -47,7 +47,6 @@ public:
     void BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance);
 
 
-
 private:
     QSqlDatabase m_database;
 };
