@@ -566,10 +566,10 @@ void MainWindow::on_LoadData_clicked()
     ui->PrePQueueTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     Delete_Tour_Data();                         // Deletes TourData table so it can be reused
-    ui->QueueTableView->setModel(databaseObj.loadTourQueueData());  // clears TourTableView
+    ui->PrePQueueTable->setModel(databaseObj.loadTourQueueData());  // clears TourTableView
     DeleteAlreadyVisitedCollegesTable();        // Will clear the AlreadyVisitedColleges table
     selectedCollegesVector.clear();             // clears the selected colleges vector
-    ui->DistanceNumber->display("0");           // Initially sets the DistanceNumber widget to be 0
+    ui->DistanceLCDctr->display("0");           // Initially sets the DistanceNumber widget to be 0
 }
 
 
