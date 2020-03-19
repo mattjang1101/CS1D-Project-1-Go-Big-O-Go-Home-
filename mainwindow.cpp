@@ -471,7 +471,7 @@ void MainWindow::on_DepartButton_clicked()
 
 }
 
-    //----------------------------SOUVINER PAGE CODE-----------------------------------------//
+    //----------------------------CAMPUS VISIT PAGE CODE-----------------------------------------//
 
 void MainWindow::on_backButton_7_clicked()
 {

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="MainMenu">
      <widget class="QWidget" name="layoutWidget">
@@ -906,10 +906,10 @@
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>370</x>
+        <x>350</x>
         <y>550</y>
-        <width>31</width>
-        <height>16</height>
+        <width>51</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">

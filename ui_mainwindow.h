@@ -624,7 +624,7 @@ public:
         collegeDescriptionTextBrowser->setFont(font5);
         label_7 = new QLabel(CampusPage);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(370, 550, 31, 16));
+        label_7->setGeometry(QRect(350, 550, 51, 20));
         label_7->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         priceLCDNumber = new QLCDNumber(CampusPage);
         priceLCDNumber->setObjectName(QString::fromUtf8("priceLCDNumber"));
@@ -635,7 +635,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
