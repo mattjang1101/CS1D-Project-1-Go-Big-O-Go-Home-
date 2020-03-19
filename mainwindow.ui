@@ -724,10 +724,10 @@
      <widget class="QWidget" name="layoutWidget_21">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>459</y>
-        <width>171</width>
-        <height>111</height>
+        <x>90</x>
+        <y>450</y>
+        <width>181</width>
+        <height>121</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_46">
@@ -749,7 +749,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLCDNumber" name="DistanceLCDctr"/>
+        <widget class="QLCDNumber" name="DistanceLCDctr">
+         <property name="digitCount">
+          <number>7</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

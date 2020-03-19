@@ -537,7 +537,7 @@ public:
 
         layoutWidget_21 = new QWidget(PrePlannedMenu);
         layoutWidget_21->setObjectName(QString::fromUtf8("layoutWidget_21"));
-        layoutWidget_21->setGeometry(QRect(100, 459, 171, 111));
+        layoutWidget_21->setGeometry(QRect(90, 450, 181, 121));
         verticalLayout_46 = new QVBoxLayout(layoutWidget_21);
         verticalLayout_46->setObjectName(QString::fromUtf8("verticalLayout_46"));
         verticalLayout_46->setContentsMargins(0, 0, 0, 0);
@@ -554,6 +554,7 @@ public:
 
         DistanceLCDctr = new QLCDNumber(layoutWidget_21);
         DistanceLCDctr->setObjectName(QString::fromUtf8("DistanceLCDctr"));
+        DistanceLCDctr->setDigitCount(7);
 
         verticalLayout_46->addWidget(DistanceLCDctr);
 

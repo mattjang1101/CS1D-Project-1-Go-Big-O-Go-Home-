@@ -616,7 +616,9 @@ void MainWindow::on_SortAmount_clicked()
     for(int i = 1; i < amount; i++)
     {
         QString tempName;
-        qry.prepare("SELECT DISTINCT startingCollege FROM CollegeDistances WHERE startingCollege NOT IN (Select CollegeName from AlreadyVisitedColleges) ORDER BY RANDOM() LIMIT 1");
+//        qry.prepare("SELECT DISTINCT endingCollege FROM CollegeDistances WHERE endingCollege NOT IN (Select CollegeName from AlreadyVisitedColleges) ORDER BY RANDOM() LIMIT 1");
+        qry.prepare("SELECT DISTINCT startingCollege FROM CollegeDistances WHERE startingCollege NOT IN (Select CollegeName from AlreadyVisitedColleges) "
+                    "AND startingCollege NOT IN (SELECT Queue from TourData) ORDER BY RANDOM() LIMIT 1");
 
         // Stores the randomly chosen college to the list
         if(!qry.exec())
@@ -649,17 +651,14 @@ void MainWindow::on_SortAmount_clicked()
             qDebug() << "Successful insertion into Database (;" << endl;
 
 
-        if(!selectedCollegesVector.contains(tempName))
+        // Inserts into the already visited colleges table the first college
+        QString startingCollege = selectedCollegesVector.at(0);    // Gets first college from table
+
+        qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
+
+        if(!qry.exec())
         {
-            // Inserts into the already visited colleges table the first college
-            QString startingCollege = selectedCollegesVector.at(0);    // Gets first college from table
-
-            qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
-
-            if(!qry.exec())
-            {
-                 qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
-            }
+             qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
         }
 
     }
