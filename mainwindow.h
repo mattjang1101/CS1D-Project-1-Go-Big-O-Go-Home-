@@ -91,7 +91,7 @@ private slots:
     // DepartButton() - Will officially start the trip
     void on_DepartButton_clicked();
 
-    //----------------------------SOUVINER PAGE CODE-----------------------------------------//
+    //----------------------------CAMPUS VISIT PAGE CODE-----------------------------------------//
 
     void on_backButton_7_clicked();
 
