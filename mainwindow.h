@@ -91,6 +91,8 @@ private slots:
     // DepartButton() - Will officially start the trip
     void on_DepartButton_clicked();
 
+    //----------------------------SOUVINER PAGE CODE-----------------------------------------//
+
     void on_backButton_7_clicked();
 
     // loads souvenirComboBox with souvenirs corresponding to the college
@@ -111,9 +113,7 @@ private slots:
 
     void on_LoadData_clicked();
 
-
     void on_SortAmount_clicked();
-
 
     void on_DeleteButton_clicked();
 
