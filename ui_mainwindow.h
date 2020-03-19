@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.0
+** Created by: Qt User Interface Compiler version 5.12.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -83,18 +83,20 @@ public:
     QPushButton *DeleteQueueButton;
     QLabel *CurrentLabel;
     QPushButton *SortQueue;
-    QLCDNumber *DistanceNumber;
-    QWidget *layoutWidget4;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_28;
     QVBoxLayout *verticalLayout_7;
     QPushButton *DepartButton;
     QLabel *DistanceLabel;
+    QLCDNumber *DistanceNumber;
     QWidget *PrePlannedMenu;
     QWidget *layoutWidget_23;
     QGridLayout *gridLayout_15;
-    QLabel *CurrentLabel_20;
-    QComboBox *CollegeSelectBox;
     QComboBox *DesiredAmtBox;
+    QComboBox *CollegeSelectBox;
+    QLabel *CurrentLabel_20;
     QLabel *SelectCollegeCampusLabel;
+    QPushButton *SortAmount;
     QPushButton *backButton_6;
     QWidget *layoutWidget_22;
     QVBoxLayout *verticalLayout_44;
@@ -114,13 +116,13 @@ public:
     QWidget *CampusPage;
     QTableView *souvenirTableView;
     QPushButton *backButton_7;
-    QWidget *layoutWidget5;
+    QWidget *layoutWidget4;
     QVBoxLayout *verticalLayout_3;
     QPushButton *loadSouvenirButton;
     QComboBox *souvenirComboBox;
     QPushButton *purchaseSouvenirsButton;
     QPushButton *deleteSouvenirsButton;
-    QWidget *layoutWidget6;
+    QWidget *layoutWidget5;
     QVBoxLayout *verticalLayout_4;
     QLabel *collegeNameLabel;
     QLabel *collegePicturesLabel;
@@ -321,7 +323,7 @@ public:
 
         layoutWidget2 = new QWidget(CustomTripMenu);
         layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(10, 70, 415, 101));
+        layoutWidget2->setGeometry(QRect(10, 70, 371, 101));
         verticalLayout_11 = new QVBoxLayout(layoutWidget2);
         verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
         verticalLayout_11->setContentsMargins(0, 0, 0, 0);
@@ -384,9 +386,30 @@ public:
 
         gridLayout_4->addWidget(SortQueue, 4, 0, 1, 1);
 
-        DistanceNumber = new QLCDNumber(CustomTripMenu);
+        widget = new QWidget(CustomTripMenu);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(90, 460, 181, 111));
+        verticalLayout_28 = new QVBoxLayout(widget);
+        verticalLayout_28->setObjectName(QString::fromUtf8("verticalLayout_28"));
+        verticalLayout_28->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        DepartButton = new QPushButton(widget);
+        DepartButton->setObjectName(QString::fromUtf8("DepartButton"));
+
+        verticalLayout_7->addWidget(DepartButton);
+
+        DistanceLabel = new QLabel(widget);
+        DistanceLabel->setObjectName(QString::fromUtf8("DistanceLabel"));
+        DistanceLabel->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_7->addWidget(DistanceLabel);
+
+
+        verticalLayout_28->addLayout(verticalLayout_7);
+
+        DistanceNumber = new QLCDNumber(widget);
         DistanceNumber->setObjectName(QString::fromUtf8("DistanceNumber"));
-        DistanceNumber->setGeometry(QRect(90, 510, 169, 41));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -395,22 +418,8 @@ public:
         DistanceNumber->setMaximumSize(QSize(169, 16777215));
         DistanceNumber->setSmallDecimalPoint(false);
         DistanceNumber->setDigitCount(7);
-        layoutWidget4 = new QWidget(CustomTripMenu);
-        layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
-        layoutWidget4->setGeometry(QRect(110, 460, 111, 44));
-        verticalLayout_7 = new QVBoxLayout(layoutWidget4);
-        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
-        DepartButton = new QPushButton(layoutWidget4);
-        DepartButton->setObjectName(QString::fromUtf8("DepartButton"));
 
-        verticalLayout_7->addWidget(DepartButton);
-
-        DistanceLabel = new QLabel(layoutWidget4);
-        DistanceLabel->setObjectName(QString::fromUtf8("DistanceLabel"));
-        DistanceLabel->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_7->addWidget(DistanceLabel);
+        verticalLayout_28->addWidget(DistanceNumber);
 
         stackedWidget->addWidget(CustomTripMenu);
         PrePlannedMenu = new QWidget();
@@ -421,26 +430,7 @@ public:
         gridLayout_15 = new QGridLayout(layoutWidget_23);
         gridLayout_15->setObjectName(QString::fromUtf8("gridLayout_15"));
         gridLayout_15->setContentsMargins(0, 0, 0, 0);
-        CurrentLabel_20 = new QLabel(layoutWidget_23);
-        CurrentLabel_20->setObjectName(QString::fromUtf8("CurrentLabel_20"));
-        CurrentLabel_20->setFont(font2);
-        CurrentLabel_20->setAlignment(Qt::AlignCenter);
-
-        gridLayout_15->addWidget(CurrentLabel_20, 2, 0, 1, 1);
-
-        CollegeSelectBox = new QComboBox(layoutWidget_23);
-        CollegeSelectBox->setObjectName(QString::fromUtf8("CollegeSelectBox"));
-
-        gridLayout_15->addWidget(CollegeSelectBox, 1, 0, 1, 2);
-
         DesiredAmtBox = new QComboBox(layoutWidget_23);
-        DesiredAmtBox->addItem(QString());
-        DesiredAmtBox->addItem(QString());
-        DesiredAmtBox->addItem(QString());
-        DesiredAmtBox->addItem(QString());
-        DesiredAmtBox->addItem(QString());
-        DesiredAmtBox->addItem(QString());
-        DesiredAmtBox->addItem(QString());
         DesiredAmtBox->addItem(QString());
         DesiredAmtBox->addItem(QString());
         DesiredAmtBox->addItem(QString());
@@ -458,12 +448,29 @@ public:
 
         gridLayout_15->addWidget(DesiredAmtBox, 2, 1, 1, 1);
 
+        CollegeSelectBox = new QComboBox(layoutWidget_23);
+        CollegeSelectBox->setObjectName(QString::fromUtf8("CollegeSelectBox"));
+
+        gridLayout_15->addWidget(CollegeSelectBox, 1, 0, 1, 2);
+
+        CurrentLabel_20 = new QLabel(layoutWidget_23);
+        CurrentLabel_20->setObjectName(QString::fromUtf8("CurrentLabel_20"));
+        CurrentLabel_20->setFont(font2);
+        CurrentLabel_20->setAlignment(Qt::AlignCenter);
+
+        gridLayout_15->addWidget(CurrentLabel_20, 2, 0, 1, 1);
+
         SelectCollegeCampusLabel = new QLabel(layoutWidget_23);
         SelectCollegeCampusLabel->setObjectName(QString::fromUtf8("SelectCollegeCampusLabel"));
         SelectCollegeCampusLabel->setFont(font2);
         SelectCollegeCampusLabel->setAlignment(Qt::AlignCenter);
 
         gridLayout_15->addWidget(SelectCollegeCampusLabel, 0, 0, 1, 2);
+
+        SortAmount = new QPushButton(layoutWidget_23);
+        SortAmount->setObjectName(QString::fromUtf8("SortAmount"));
+
+        gridLayout_15->addWidget(SortAmount, 3, 0, 1, 2);
 
         backButton_6 = new QPushButton(PrePlannedMenu);
         backButton_6->setObjectName(QString::fromUtf8("backButton_6"));
@@ -553,36 +560,36 @@ public:
         backButton_7 = new QPushButton(CampusPage);
         backButton_7->setObjectName(QString::fromUtf8("backButton_7"));
         backButton_7->setGeometry(QRect(10, 10, 71, 32));
-        layoutWidget5 = new QWidget(CampusPage);
-        layoutWidget5->setObjectName(QString::fromUtf8("layoutWidget5"));
-        layoutWidget5->setGeometry(QRect(350, 310, 151, 174));
-        verticalLayout_3 = new QVBoxLayout(layoutWidget5);
+        layoutWidget4 = new QWidget(CampusPage);
+        layoutWidget4->setObjectName(QString::fromUtf8("layoutWidget4"));
+        layoutWidget4->setGeometry(QRect(350, 310, 151, 174));
+        verticalLayout_3 = new QVBoxLayout(layoutWidget4);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        loadSouvenirButton = new QPushButton(layoutWidget5);
+        loadSouvenirButton = new QPushButton(layoutWidget4);
         loadSouvenirButton->setObjectName(QString::fromUtf8("loadSouvenirButton"));
 
         verticalLayout_3->addWidget(loadSouvenirButton);
 
-        souvenirComboBox = new QComboBox(layoutWidget5);
+        souvenirComboBox = new QComboBox(layoutWidget4);
         souvenirComboBox->setObjectName(QString::fromUtf8("souvenirComboBox"));
 
         verticalLayout_3->addWidget(souvenirComboBox);
 
-        purchaseSouvenirsButton = new QPushButton(layoutWidget5);
+        purchaseSouvenirsButton = new QPushButton(layoutWidget4);
         purchaseSouvenirsButton->setObjectName(QString::fromUtf8("purchaseSouvenirsButton"));
 
         verticalLayout_3->addWidget(purchaseSouvenirsButton);
 
-        deleteSouvenirsButton = new QPushButton(layoutWidget5);
+        deleteSouvenirsButton = new QPushButton(layoutWidget4);
         deleteSouvenirsButton->setObjectName(QString::fromUtf8("deleteSouvenirsButton"));
 
         verticalLayout_3->addWidget(deleteSouvenirsButton);
 
-        layoutWidget6 = new QWidget(CampusPage);
-        layoutWidget6->setObjectName(QString::fromUtf8("layoutWidget6"));
-        layoutWidget6->setGeometry(QRect(570, 430, 265, 59));
-        verticalLayout_4 = new QVBoxLayout(layoutWidget6);
+        layoutWidget5 = new QWidget(CampusPage);
+        layoutWidget5->setObjectName(QString::fromUtf8("layoutWidget5"));
+        layoutWidget5->setGeometry(QRect(570, 430, 265, 59));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget5);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         collegeNameLabel = new QLabel(CampusPage);
@@ -621,7 +628,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -629,74 +636,68 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        DisplayCampusInfo->setText(QCoreApplication::translate("MainWindow", "Campus Information", nullptr));
-        DisplaySouvenirs->setText(QCoreApplication::translate("MainWindow", "Souvenirs", nullptr));
-        StartTour->setText(QCoreApplication::translate("MainWindow", "START TOUR", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "ADMIN ONLY", nullptr));
-        usernameLabel->setText(QCoreApplication::translate("MainWindow", "Username: ", nullptr));
-        passwordLabel->setText(QCoreApplication::translate("MainWindow", "Password: ", nullptr));
-        loginPushBtn_2->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
-        clearPushBtn_2->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        DisplayCampusInfo->setText(QApplication::translate("MainWindow", "Campus Information", nullptr));
+        DisplaySouvenirs->setText(QApplication::translate("MainWindow", "Souvenirs", nullptr));
+        StartTour->setText(QApplication::translate("MainWindow", "START TOUR", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "ADMIN ONLY", nullptr));
+        usernameLabel->setText(QApplication::translate("MainWindow", "Username: ", nullptr));
+        passwordLabel->setText(QApplication::translate("MainWindow", "Password: ", nullptr));
+        loginPushBtn_2->setText(QApplication::translate("MainWindow", "Login", nullptr));
+        clearPushBtn_2->setText(QApplication::translate("MainWindow", "Clear", nullptr));
         MainWindowLogo->setText(QString());
-        label->setText(QCoreApplication::translate("MainWindow", "WELCOME TO YOUR COLLEGE TOUR, STUDENTS!", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "DISTANCE BY COLLEGE", nullptr));
-        SelectStartingCollegeButton->setText(QCoreApplication::translate("MainWindow", "Load Data", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select College to view</span></p></body></html>", nullptr));
-        PlanCustomTripButton->setText(QCoreApplication::translate("MainWindow", "Custom Tour Trip", nullptr));
-        PrePlannedButton->setText(QCoreApplication::translate("MainWindow", "Pre-Planned Trip", nullptr));
-        backButton_1->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        CurrentQueueLabel->setText(QCoreApplication::translate("MainWindow", "Current Queue", nullptr));
-        TourPlanningLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Custom Tour Plan</span></p></body></html>", nullptr));
-        SelectStartingCollegeButton_3->setText(QCoreApplication::translate("MainWindow", "Load Data", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-style:italic;\">&quot;Plan your custom trip from point A to point B all in one!&quot;</span></p></body></html>", nullptr));
-        backButton_2->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        AddQueueButton->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
-        DeleteQueueButton->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
-        CurrentLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select College Campus</span></p></body></html>", nullptr));
-        SortQueue->setText(QCoreApplication::translate("MainWindow", "Sort", nullptr));
-        DepartButton->setText(QCoreApplication::translate("MainWindow", "Depart", nullptr));
-        DistanceLabel->setText(QCoreApplication::translate("MainWindow", "Distance (miles)", nullptr));
-        CurrentLabel_20->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">Desired Amount: </span></p></body></html>", nullptr));
-        DesiredAmtBox->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
-        DesiredAmtBox->setItemText(1, QCoreApplication::translate("MainWindow", "2", nullptr));
-        DesiredAmtBox->setItemText(2, QCoreApplication::translate("MainWindow", "3", nullptr));
-        DesiredAmtBox->setItemText(3, QCoreApplication::translate("MainWindow", "4", nullptr));
-        DesiredAmtBox->setItemText(4, QCoreApplication::translate("MainWindow", "5", nullptr));
-        DesiredAmtBox->setItemText(5, QCoreApplication::translate("MainWindow", "6", nullptr));
-        DesiredAmtBox->setItemText(6, QCoreApplication::translate("MainWindow", "7", nullptr));
-        DesiredAmtBox->setItemText(7, QCoreApplication::translate("MainWindow", "8", nullptr));
-        DesiredAmtBox->setItemText(8, QCoreApplication::translate("MainWindow", "9", nullptr));
-        DesiredAmtBox->setItemText(9, QCoreApplication::translate("MainWindow", "10", nullptr));
-        DesiredAmtBox->setItemText(10, QCoreApplication::translate("MainWindow", "11", nullptr));
-        DesiredAmtBox->setItemText(11, QCoreApplication::translate("MainWindow", "12", nullptr));
-        DesiredAmtBox->setItemText(12, QCoreApplication::translate("MainWindow", "13", nullptr));
-        DesiredAmtBox->setItemText(13, QCoreApplication::translate("MainWindow", "14", nullptr));
-        DesiredAmtBox->setItemText(14, QCoreApplication::translate("MainWindow", "15", nullptr));
-        DesiredAmtBox->setItemText(15, QCoreApplication::translate("MainWindow", "16", nullptr));
-        DesiredAmtBox->setItemText(16, QCoreApplication::translate("MainWindow", "17", nullptr));
-        DesiredAmtBox->setItemText(17, QCoreApplication::translate("MainWindow", "18", nullptr));
-        DesiredAmtBox->setItemText(18, QCoreApplication::translate("MainWindow", "19", nullptr));
-        DesiredAmtBox->setItemText(19, QCoreApplication::translate("MainWindow", "20", nullptr));
+        label->setText(QApplication::translate("MainWindow", "WELCOME TO YOUR COLLEGE TOUR, STUDENTS!", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "DISTANCE BY COLLEGE", nullptr));
+        SelectStartingCollegeButton->setText(QApplication::translate("MainWindow", "Load Data", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select College to view</span></p></body></html>", nullptr));
+        PlanCustomTripButton->setText(QApplication::translate("MainWindow", "Custom Tour Trip", nullptr));
+        PrePlannedButton->setText(QApplication::translate("MainWindow", "Pre-Planned Trip", nullptr));
+        backButton_1->setText(QApplication::translate("MainWindow", "Back", nullptr));
+        CurrentQueueLabel->setText(QApplication::translate("MainWindow", "Current Queue", nullptr));
+        TourPlanningLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Custom Tour Plan</span></p></body></html>", nullptr));
+        SelectStartingCollegeButton_3->setText(QApplication::translate("MainWindow", "Load Data", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-style:italic;\">&quot;Plan your custom trip from point A to point B all in one!&quot;</span></p></body></html>", nullptr));
+        backButton_2->setText(QApplication::translate("MainWindow", "Back", nullptr));
+        AddQueueButton->setText(QApplication::translate("MainWindow", "Add", nullptr));
+        DeleteQueueButton->setText(QApplication::translate("MainWindow", "Delete", nullptr));
+        CurrentLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select College Campus</span></p></body></html>", nullptr));
+        SortQueue->setText(QApplication::translate("MainWindow", "Sort", nullptr));
+        DepartButton->setText(QApplication::translate("MainWindow", "Depart", nullptr));
+        DistanceLabel->setText(QApplication::translate("MainWindow", "Distance (miles)", nullptr));
+        DesiredAmtBox->setItemText(0, QApplication::translate("MainWindow", "1", nullptr));
+        DesiredAmtBox->setItemText(1, QApplication::translate("MainWindow", "2", nullptr));
+        DesiredAmtBox->setItemText(2, QApplication::translate("MainWindow", "3", nullptr));
+        DesiredAmtBox->setItemText(3, QApplication::translate("MainWindow", "4", nullptr));
+        DesiredAmtBox->setItemText(4, QApplication::translate("MainWindow", "5", nullptr));
+        DesiredAmtBox->setItemText(5, QApplication::translate("MainWindow", "6", nullptr));
+        DesiredAmtBox->setItemText(6, QApplication::translate("MainWindow", "7", nullptr));
+        DesiredAmtBox->setItemText(7, QApplication::translate("MainWindow", "8", nullptr));
+        DesiredAmtBox->setItemText(8, QApplication::translate("MainWindow", "9", nullptr));
+        DesiredAmtBox->setItemText(9, QApplication::translate("MainWindow", "10", nullptr));
+        DesiredAmtBox->setItemText(10, QApplication::translate("MainWindow", "11", nullptr));
+        DesiredAmtBox->setItemText(11, QApplication::translate("MainWindow", "12", nullptr));
+        DesiredAmtBox->setItemText(12, QApplication::translate("MainWindow", "13", nullptr));
 
-        SelectCollegeCampusLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select College Campus</span></p></body></html>", nullptr));
-        backButton_6->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        PrePlannedLabel->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Pre-Planned Trip</span></p></body></html>", nullptr));
-        LoadData->setText(QCoreApplication::translate("MainWindow", "Load Data", nullptr));
-        label_20->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-style:italic;\">&quot;Choose a pre-planned trip of your desire !&quot;</span></p></body></html>", nullptr));
-        label_21->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-style:italic;\">&quot;The </span><span style=\" font-weight:600; font-style:italic; text-decoration: underline;\">shortest </span><span style=\" font-style:italic;\">route is automatically calculated!&quot;</span></p></body></html>", nullptr));
-        CurrentQueueLabel_12->setText(QCoreApplication::translate("MainWindow", "Current Queue", nullptr));
-        DepartButton_12->setText(QCoreApplication::translate("MainWindow", "Depart", nullptr));
-        DistanceLabel_12->setText(QCoreApplication::translate("MainWindow", "Distance (miles)", nullptr));
-        backButton_7->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        loadSouvenirButton->setText(QCoreApplication::translate("MainWindow", "Load Data", nullptr));
-        purchaseSouvenirsButton->setText(QCoreApplication::translate("MainWindow", "Purchase", nullptr));
-        deleteSouvenirsButton->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
-        collegeNameLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        collegePicturesLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "Move on to the next Campus in Queue. . . ", nullptr));
-        nextCollegeButton->setText(QCoreApplication::translate("MainWindow", "Next", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "Total: ", nullptr));
+        CurrentLabel_20->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">Desired Amount: </span></p></body></html>", nullptr));
+        SelectCollegeCampusLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Select College Campus</span></p></body></html>", nullptr));
+        SortAmount->setText(QApplication::translate("MainWindow", "Sort", nullptr));
+        backButton_6->setText(QApplication::translate("MainWindow", "Back", nullptr));
+        PrePlannedLabel->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" text-decoration: underline;\">Pre-Planned Trip</span></p></body></html>", nullptr));
+        LoadData->setText(QApplication::translate("MainWindow", "Load Data", nullptr));
+        label_20->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-style:italic;\">&quot;Choose a pre-planned trip of your desire !&quot;</span></p></body></html>", nullptr));
+        label_21->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-style:italic;\">&quot;The </span><span style=\" font-weight:600; font-style:italic; text-decoration: underline;\">shortest </span><span style=\" font-style:italic;\">route is automatically calculated!&quot;</span></p></body></html>", nullptr));
+        CurrentQueueLabel_12->setText(QApplication::translate("MainWindow", "Current Queue", nullptr));
+        DepartButton_12->setText(QApplication::translate("MainWindow", "Depart", nullptr));
+        DistanceLabel_12->setText(QApplication::translate("MainWindow", "Distance (miles)", nullptr));
+        backButton_7->setText(QApplication::translate("MainWindow", "Back", nullptr));
+        loadSouvenirButton->setText(QApplication::translate("MainWindow", "Load Data", nullptr));
+        purchaseSouvenirsButton->setText(QApplication::translate("MainWindow", "Purchase", nullptr));
+        deleteSouvenirsButton->setText(QApplication::translate("MainWindow", "Delete", nullptr));
+        collegeNameLabel->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
+        collegePicturesLabel->setText(QApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_8->setText(QApplication::translate("MainWindow", "Move on to the next Campus in Queue. . . ", nullptr));
+        nextCollegeButton->setText(QApplication::translate("MainWindow", "Next", nullptr));
+        label_7->setText(QApplication::translate("MainWindow", "Total: ", nullptr));
     } // retranslateUi
 
 };
