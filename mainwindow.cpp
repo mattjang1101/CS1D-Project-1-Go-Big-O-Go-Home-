@@ -471,6 +471,7 @@ void MainWindow::on_DepartButton_clicked()
 
 }
 
+    //----------------------------SOUVINER PAGE CODE-----------------------------------------//
 
 void MainWindow::on_backButton_7_clicked()
 {
@@ -563,6 +564,85 @@ void MainWindow::on_LoadData_clicked()
 {
     ui->CollegeSelectBox->setModel(databaseObj.loadStartingCollegeList());
     ui->PrePQueueTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    Delete_Tour_Data();                         // Deletes TourData table so it can be reused
+    ui->QueueTableView->setModel(databaseObj.loadTourQueueData());  // clears TourTableView
+    DeleteAlreadyVisitedCollegesTable();        // Will clear the AlreadyVisitedColleges table
+    selectedCollegesVector.clear();             // clears the selected colleges vector
+    ui->DistanceNumber->display("0");           // Initially sets the DistanceNumber widget to be 0
 }
 
 
+void MainWindow::on_SortAmount_clicked()
+{
+    QString AddToQueue = ui->StartingPointBox->currentText();
+
+    // If the vector already contains the college, then it won't add
+    // Otherwise, it adds
+    if(selectedCollegesVector.contains(AddToQueue)) {
+        qDebug() << "Can't add duplicates!";
+    }
+    else {
+        selectedCollegesVector.append(AddToQueue);
+    }
+
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO TourData(Queue) VALUES('"+AddToQueue+"')");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not add to Queue. . ." << endl;
+    }
+    else
+        qDebug() << "Successful insertion into Database" << endl;
+
+    int amount = ui->DesiredAmtBox->currentText().toInt();
+
+    for(int i= 1; i < amount; i++)
+    {
+        QSqlQuery qry;
+        qry.prepare("SELECT DISTINCT startingCollege FROM CollegeDistances ORDER BY RANDOM() LIMIT 1");
+        QString tempName = qry.value(i).toString();
+
+        if(selectedCollegesVector.contains(AddToQueue)) {
+            qDebug() << "Can't add duplicates!";
+        }
+        else {
+            selectedCollegesVector.append(AddToQueue);
+        }
+
+        qry.prepare("INSERT INTO TourData(Queue) VALUES('"+AddToQueue+"')");
+
+        if(!qry.exec())
+        {
+            qDebug() <<"Error! Could not add to Queue. . ." << endl;
+        }
+        else
+            qDebug() << "Successful insertion into Database" << endl;
+    }
+
+    // Because databaseObj.loadTourQueueData() displays in an incorrect form in QueueTableView, we set
+    // the model to be based off the vector (in correct order)
+    ui->QueueTableView->setModel(new QStringListModel(QList<QString>::fromVector(selectedCollegesVector)));
+
+    // If the user clicks sort without selecting any colleges, then an error message will be displayed
+    if(selectedCollegesVector.isEmpty()) {
+       QMessageBox::warning(this, "Warning", "Please select a college");
+       return;
+    }
+
+    // Inserts into the already visited colleges table the first college
+    QString startingCollege = selectedCollegesVector.at(0);    // Gets first college from table
+
+    qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
+    if(!qry.exec()) {
+         qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
+    }
+
+    double totalDistance = 0;
+
+    databaseObj.BeginTrip(startingCollege, selectedCollegesVector, totalDistance);
+
+    ui->QueueTableView->setModel(databaseObj.loadAlreadyVisitedCollegesTable());    // Displays newly sorted table
+    ui->DistanceNumber->display(QString::number(totalDistance));    // Displays the totalDistance onto the DistanceNumber widget
+}

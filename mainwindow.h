@@ -112,6 +112,7 @@ private slots:
     void on_LoadData_clicked();
 
 
+    void on_SortAmount_clicked();
 
 private:
     Ui::MainWindow *ui;
