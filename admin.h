@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <string>
 #include <iostream>
+#include "dbmanager.h"
 using namespace std;
 
 namespace Ui {
@@ -19,9 +20,19 @@ public:
     ~Admin();
 
 
+private slots:
+
+    void on_AddButton_clicked();
+
+    void on_revertButton_clicked();
+
+    void on_ChangePricesButton_clicked();
+
 private:
     Ui::Admin *ui;
     QMainWindow MainObject;
+    DBManager databaseObj;
+
 };
 
 #endif // ADMIN_H

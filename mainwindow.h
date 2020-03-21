@@ -9,6 +9,7 @@
 #include <QObject>
 #include <admin.h>
 #include <QKeyEvent>
+#include <QVector>
 #include "dbmanager.h"
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +23,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    // Gets name of the pixel
+    QString GetPicturePath(QString collegeName);
+
+    // Gets college's description
+    QString GetCollegeDescription(QString collegeName);
 
 
 private slots:
@@ -71,6 +78,33 @@ private slots:
 
     void on_backButton_2_clicked();
 
+    /* on_SortQueue_clicked() - Once clicked, it will sort the Queue Table View by
+     order of efficiency */
+    void on_SortQueue_clicked();
+
+    // Delete_Tour_Data() - Will clear everything from TourData table
+    void Delete_Tour_Data();
+
+    // DeleteAlreadyVisitedTable() - Will clear everything from AlreadyVisitedTable
+    void DeleteAlreadyVisitedCollegesTable();
+
+    // DepartButton() - Will officially start the trip
+    void on_DepartButton_clicked();
+
+    void on_backButton_7_clicked();
+
+    // loads souvenirComboBox with souvenirs corresponding to the college
+    void on_loadSouvenirButton_clicked();
+
+    // enables one to purchase chosen souvenir at a given college
+    void on_purchaseSouvenirsButton_clicked();
+
+    // If user clicks delete while purchasing souvenirs, will modify currentPrice and totalPrice
+    void on_deleteSouvenirsButton_clicked();
+
+    // Will go to next college during the tour trip
+    void on_nextCollegeButton_clicked();
+
     //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
 
     void on_backButton_6_clicked();
@@ -81,8 +115,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Admin adminObj; // represents adminObj of class: Admin
+    QVector<QString> selectedCollegesVector;    // vector to store selected colleges
+    Admin adminObj;                             // represents adminObj of class: Admin
     DBManager databaseObj;
+    double totalPrice;                          // total price from trip
+    double currentPrice;                        // current price from each college trip
 
 
 protected:
