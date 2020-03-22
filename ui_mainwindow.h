@@ -324,7 +324,7 @@ public:
 
         layoutWidget2 = new QWidget(CustomTripMenu);
         layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(10, 70, 415, 101));
+        layoutWidget2->setGeometry(QRect(10, 70, 341, 101));
         verticalLayout_11 = new QVBoxLayout(layoutWidget2);
         verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
         verticalLayout_11->setContentsMargins(0, 0, 0, 0);
@@ -639,7 +639,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

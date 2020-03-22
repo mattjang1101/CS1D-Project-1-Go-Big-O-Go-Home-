@@ -53,7 +53,7 @@ QSqlQueryModel *DBManager::loadSouvenirs()
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("SELECT college, traditionalSouvenirs, cost FROM Souvenirs");
+    qry.prepare("SELECT college, traditionalSouvenirs, cost FROM Souvenirs order by college");
 
     if(!qry.exec())
     {

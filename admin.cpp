@@ -104,6 +104,7 @@ void Admin::on_changePriceBtn_clicked()
 
         // Updates souvenir price
         databaseObj.UpdateSouvenirPrice(college, souvenir, newPrice);
+        QMessageBox::information(this, "Information", "Item price been successfully changed!");
         ui->souvenirAdminTable->setModel(databaseObj.loadSouvenirs());  // Updates souvenirTable view
     }
 }
@@ -123,11 +124,74 @@ void Admin::on_addSouvenirs_clicked()
 {
    ui->stackedWidget_3->setCurrentWidget(ui->AddSouvenir);
    ui->addSouvenirTableView->setModel(databaseObj.loadSouvenirs());
+
+   ui->collegeListComboBox_2->setModel(databaseObj.loadStartingCollegeList());  // loads distinct colleges into combo box
+}
+
+// Part of AddSouvenir widget page
+void Admin::on_addButton_clicked()
+{
+    QString souvenirName = ui->addNameLineEdit->text();
+    double price = ui->addPriceLineEdit->text().toDouble();
+
+    // If the souvenirName or price has invalid inputs, displays an error message
+    if(souvenirName.isEmpty() || ui->addPriceLineEdit->text().isEmpty() ||
+       price <= 0 || price >= 1000)
+    {
+       QMessageBox::warning(this, "Warning", "Please input a valid name or price!");
+    }
+    // Otherwise adds new souvenir
+    else
+    {
+        QString college = ui->collegeListComboBox_2->currentText();
+
+        // Inserts new souvenir into Souvenirs table
+        QSqlQuery qry;
+        qry.prepare("Insert into Souvenirs VALUES (?, ?, ?)");
+        qry.addBindValue(college);
+        qry.addBindValue(souvenirName);
+        qry.addBindValue(price);
+
+        if(!qry.exec()) {
+            qDebug() << "Cant' add new souvenir!";
+        }
+
+        // Updates the table view and displays successful message
+        ui->addSouvenirTableView->setModel(databaseObj.loadSouvenirs());
+        ui->addNameLineEdit->clear();
+        ui->addPriceLineEdit->clear();
+        QMessageBox::information(this, "Information", "Item has been successfully added!");
+    }
 }
 
 // Transfers to DeleteSouvenirs widget page
 void Admin::on_deleteSouvenirs_clicked()
 {
     ui->stackedWidget_3->setCurrentWidget(ui->DeleteSouvenir);
+    ui->deleteSouvenirTableView->setModel(databaseObj.loadSouvenirs());
+
+    ui->chooseCampusList->setModel(databaseObj.loadStartingCollegeList());  // Loads the chooseCampusList combo box with colleges
+}
+
+// Part of DeleteSouvenirs widget page
+void Admin::on_chooseCampusList_currentIndexChanged(const QString &arg1)
+{
+    QString college = ui->chooseCampusList->currentText();
+    ui->deleteSouvenirList->setModel(databaseObj.LoadSouvenirsByCollege(college, true));    // loads souvenirs for selected college
+}
+
+// Will delete chosen souvenir
+void Admin::on_deleteChosenSouvenir_clicked()
+{
+    QString college = ui->chooseCampusList->currentText();
+    QString souvenir = ui->deleteSouvenirList->currentText();
+
+    QSqlQuery qry;
+    qry.prepare("Delete from Souvenirs where college = '"+college+"' and traditionalSouvenirs = '"+souvenir+"';");
+    if(!qry.exec()) {
+       qDebug() << "Cant' add new souvenir!";
+    }
+
+    QMessageBox::information(this, "Information", "Item has been successfully deleted!");
     ui->deleteSouvenirTableView->setModel(databaseObj.loadSouvenirs());
 }

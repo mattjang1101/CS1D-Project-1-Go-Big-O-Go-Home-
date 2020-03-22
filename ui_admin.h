@@ -12,14 +12,11 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
@@ -65,27 +62,24 @@ public:
     QTableView *souvenirAdminTable;
     QWidget *AddSouvenir;
     QLabel *addSouvenirLabel;
-    QWidget *layoutWidget1;
-    QVBoxLayout *verticalLayout_5;
-    QHBoxLayout *name;
-    QLabel *nameLabel;
-    QPlainTextEdit *nameLabelInput;
-    QHBoxLayout *price;
-    QLabel *priceLabel;
-    QDoubleSpinBox *priceInput;
-    QPushButton *addButton;
     QPushButton *backBtn;
     QTableView *addSouvenirTableView;
+    QLineEdit *addPriceLineEdit;
+    QLineEdit *addNameLineEdit;
+    QLabel *label_5;
+    QComboBox *collegeListComboBox_2;
+    QLabel *priceLabel;
+    QPushButton *addButton;
+    QLabel *nameLabel;
     QWidget *DeleteSouvenir;
     QLabel *addSouvenirLabel_2;
-    QWidget *layoutWidget2;
-    QHBoxLayout *horizontalLayout_2;
+    QPushButton *backBtn_2;
+    QTableView *deleteSouvenirTableView;
+    QPushButton *deleteChosenSouvenir;
+    QWidget *widget;
     QVBoxLayout *verticalLayout_6;
     QComboBox *chooseCampusList;
     QComboBox *deleteSouvenirList;
-    QPushButton *deleteChosenSouvenir;
-    QPushButton *backBtn_2;
-    QTableView *deleteSouvenirTableView;
 
     void setupUi(QMainWindow *Admin)
     {
@@ -189,91 +183,64 @@ public:
         addSouvenirLabel = new QLabel(AddSouvenir);
         addSouvenirLabel->setObjectName(QString::fromUtf8("addSouvenirLabel"));
         addSouvenirLabel->setGeometry(QRect(0, 0, 161, 21));
-        layoutWidget1 = new QWidget(AddSouvenir);
-        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(0, 31, 251, 106));
-        verticalLayout_5 = new QVBoxLayout(layoutWidget1);
-        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
-        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
-        name = new QHBoxLayout();
-        name->setObjectName(QString::fromUtf8("name"));
-        nameLabel = new QLabel(layoutWidget1);
-        nameLabel->setObjectName(QString::fromUtf8("nameLabel"));
-
-        name->addWidget(nameLabel);
-
-        nameLabelInput = new QPlainTextEdit(layoutWidget1);
-        nameLabelInput->setObjectName(QString::fromUtf8("nameLabelInput"));
-
-        name->addWidget(nameLabelInput);
-
-
-        verticalLayout_5->addLayout(name);
-
-        price = new QHBoxLayout();
-        price->setObjectName(QString::fromUtf8("price"));
-        priceLabel = new QLabel(layoutWidget1);
-        priceLabel->setObjectName(QString::fromUtf8("priceLabel"));
-
-        price->addWidget(priceLabel);
-
-        priceInput = new QDoubleSpinBox(layoutWidget1);
-        priceInput->setObjectName(QString::fromUtf8("priceInput"));
-
-        price->addWidget(priceInput);
-
-        addButton = new QPushButton(layoutWidget1);
-        addButton->setObjectName(QString::fromUtf8("addButton"));
-
-        price->addWidget(addButton);
-
-
-        verticalLayout_5->addLayout(price);
-
         backBtn = new QPushButton(AddSouvenir);
         backBtn->setObjectName(QString::fromUtf8("backBtn"));
         backBtn->setGeometry(QRect(10, 210, 75, 23));
         addSouvenirTableView = new QTableView(AddSouvenir);
         addSouvenirTableView->setObjectName(QString::fromUtf8("addSouvenirTableView"));
-        addSouvenirTableView->setGeometry(QRect(290, 0, 401, 291));
+        addSouvenirTableView->setGeometry(QRect(230, 10, 461, 271));
+        addPriceLineEdit = new QLineEdit(AddSouvenir);
+        addPriceLineEdit->setObjectName(QString::fromUtf8("addPriceLineEdit"));
+        addPriceLineEdit->setGeometry(QRect(50, 160, 151, 20));
+        addNameLineEdit = new QLineEdit(AddSouvenir);
+        addNameLineEdit->setObjectName(QString::fromUtf8("addNameLineEdit"));
+        addNameLineEdit->setGeometry(QRect(50, 130, 151, 20));
+        label_5 = new QLabel(AddSouvenir);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(80, 50, 91, 16));
+        collegeListComboBox_2 = new QComboBox(AddSouvenir);
+        collegeListComboBox_2->setObjectName(QString::fromUtf8("collegeListComboBox_2"));
+        collegeListComboBox_2->setGeometry(QRect(50, 80, 151, 20));
+        priceLabel = new QLabel(AddSouvenir);
+        priceLabel->setObjectName(QString::fromUtf8("priceLabel"));
+        priceLabel->setGeometry(QRect(10, 160, 27, 16));
+        addButton = new QPushButton(AddSouvenir);
+        addButton->setObjectName(QString::fromUtf8("addButton"));
+        addButton->setGeometry(QRect(130, 210, 75, 23));
+        nameLabel = new QLabel(AddSouvenir);
+        nameLabel->setObjectName(QString::fromUtf8("nameLabel"));
+        nameLabel->setGeometry(QRect(10, 130, 31, 16));
         stackedWidget_3->addWidget(AddSouvenir);
         DeleteSouvenir = new QWidget();
         DeleteSouvenir->setObjectName(QString::fromUtf8("DeleteSouvenir"));
         addSouvenirLabel_2 = new QLabel(DeleteSouvenir);
         addSouvenirLabel_2->setObjectName(QString::fromUtf8("addSouvenirLabel_2"));
         addSouvenirLabel_2->setGeometry(QRect(1, 1, 175, 21));
-        layoutWidget2 = new QWidget(DeleteSouvenir);
-        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(0, 30, 321, 58));
-        horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        verticalLayout_6 = new QVBoxLayout();
-        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        chooseCampusList = new QComboBox(layoutWidget2);
-        chooseCampusList->setObjectName(QString::fromUtf8("chooseCampusList"));
-
-        verticalLayout_6->addWidget(chooseCampusList);
-
-        deleteSouvenirList = new QComboBox(layoutWidget2);
-        deleteSouvenirList->setObjectName(QString::fromUtf8("deleteSouvenirList"));
-
-        verticalLayout_6->addWidget(deleteSouvenirList);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_6);
-
-        deleteChosenSouvenir = new QPushButton(layoutWidget2);
-        deleteChosenSouvenir->setObjectName(QString::fromUtf8("deleteChosenSouvenir"));
-
-        horizontalLayout_2->addWidget(deleteChosenSouvenir);
-
         backBtn_2 = new QPushButton(DeleteSouvenir);
         backBtn_2->setObjectName(QString::fromUtf8("backBtn_2"));
         backBtn_2->setGeometry(QRect(10, 230, 75, 23));
         deleteSouvenirTableView = new QTableView(DeleteSouvenir);
         deleteSouvenirTableView->setObjectName(QString::fromUtf8("deleteSouvenirTableView"));
-        deleteSouvenirTableView->setGeometry(QRect(330, 10, 361, 281));
+        deleteSouvenirTableView->setGeometry(QRect(190, 10, 501, 281));
+        deleteChosenSouvenir = new QPushButton(DeleteSouvenir);
+        deleteChosenSouvenir->setObjectName(QString::fromUtf8("deleteChosenSouvenir"));
+        deleteChosenSouvenir->setGeometry(QRect(30, 100, 75, 23));
+        widget = new QWidget(DeleteSouvenir);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(1, 31, 151, 48));
+        verticalLayout_6 = new QVBoxLayout(widget);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
+        chooseCampusList = new QComboBox(widget);
+        chooseCampusList->setObjectName(QString::fromUtf8("chooseCampusList"));
+
+        verticalLayout_6->addWidget(chooseCampusList);
+
+        deleteSouvenirList = new QComboBox(widget);
+        deleteSouvenirList->setObjectName(QString::fromUtf8("deleteSouvenirList"));
+
+        verticalLayout_6->addWidget(deleteSouvenirList);
+
         stackedWidget_3->addWidget(DeleteSouvenir);
         tabWidget->addTab(tab2, QString());
 
@@ -285,8 +252,8 @@ public:
 
         tabWidget->setCurrentIndex(1);
         stackedWidget->setCurrentIndex(0);
-        stackedWidget_3->setCurrentIndex(1);
-        tabWidget_2->setCurrentIndex(0);
+        stackedWidget_3->setCurrentIndex(2);
+        tabWidget_2->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Admin);
@@ -314,15 +281,14 @@ public:
         editPriceLabel->setText(QCoreApplication::translate("Admin", "Price:", nullptr));
         tabWidget_2->setTabText(tabWidget_2->indexOf(Edit), QCoreApplication::translate("Admin", "Tab 2", nullptr));
         addSouvenirLabel->setText(QCoreApplication::translate("Admin", "<html><head/><body><p><span style=\" font-size:16pt;\">Add Souvenir</span></p></body></html>", nullptr));
-        nameLabel->setText(QCoreApplication::translate("Admin", "Name:", nullptr));
-        nameLabelInput->setPlainText(QCoreApplication::translate("Admin", "lkbdbbdbnfb\n"
-"", nullptr));
+        backBtn->setText(QCoreApplication::translate("Admin", "Back", nullptr));
+        label_5->setText(QCoreApplication::translate("Admin", "Select College", nullptr));
         priceLabel->setText(QCoreApplication::translate("Admin", "Price:", nullptr));
         addButton->setText(QCoreApplication::translate("Admin", "Add", nullptr));
-        backBtn->setText(QCoreApplication::translate("Admin", "Back", nullptr));
+        nameLabel->setText(QCoreApplication::translate("Admin", "Name:", nullptr));
         addSouvenirLabel_2->setText(QCoreApplication::translate("Admin", "<html><head/><body><p><span style=\" font-size:16pt;\">Delete Souvenir(s)</span><br/></p></body></html>", nullptr));
-        deleteChosenSouvenir->setText(QCoreApplication::translate("Admin", "Delete", nullptr));
         backBtn_2->setText(QCoreApplication::translate("Admin", "Back", nullptr));
+        deleteChosenSouvenir->setText(QCoreApplication::translate("Admin", "Delete", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab2), QCoreApplication::translate("Admin", "Tab 2", nullptr));
     } // retranslateUi
 

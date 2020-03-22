@@ -139,7 +139,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="AddDeleteSouvenir">
          <widget class="QTabWidget" name="tabWidget_2">
@@ -152,7 +152,7 @@
            </rect>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="addOrDeleteSouvenirs">
            <attribute name="title">
@@ -324,58 +324,6 @@
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Add Souvenir&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>31</y>
-            <width>251</width>
-            <height>106</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <layout class="QHBoxLayout" name="name">
-             <item>
-              <widget class="QLabel" name="nameLabel">
-               <property name="text">
-                <string>Name:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPlainTextEdit" name="nameLabelInput">
-               <property name="plainText">
-                <string>lkbdbbdbnfb
-</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="price">
-             <item>
-              <widget class="QLabel" name="priceLabel">
-               <property name="text">
-                <string>Price:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDoubleSpinBox" name="priceInput"/>
-             </item>
-             <item>
-              <widget class="QPushButton" name="addButton">
-               <property name="text">
-                <string>Add</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
          <widget class="QPushButton" name="backBtn">
           <property name="geometry">
            <rect>
@@ -392,11 +340,93 @@
          <widget class="QTableView" name="addSouvenirTableView">
           <property name="geometry">
            <rect>
-            <x>290</x>
-            <y>0</y>
-            <width>401</width>
-            <height>291</height>
+            <x>230</x>
+            <y>10</y>
+            <width>461</width>
+            <height>271</height>
            </rect>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="addPriceLineEdit">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>160</y>
+            <width>151</width>
+            <height>20</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="addNameLineEdit">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>130</y>
+            <width>151</width>
+            <height>20</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_5">
+          <property name="geometry">
+           <rect>
+            <x>80</x>
+            <y>50</y>
+            <width>91</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Select College</string>
+          </property>
+         </widget>
+         <widget class="QComboBox" name="collegeListComboBox_2">
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>80</y>
+            <width>151</width>
+            <height>20</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="priceLabel">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>160</y>
+            <width>27</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Price:</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="addButton">
+          <property name="geometry">
+           <rect>
+            <x>130</x>
+            <y>210</y>
+            <width>75</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Add</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="nameLabel">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>130</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Name:</string>
           </property>
          </widget>
         </widget>
@@ -414,35 +444,6 @@
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Delete Souvenir(s)&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>30</y>
-            <width>321</width>
-            <height>58</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_6">
-             <item>
-              <widget class="QComboBox" name="chooseCampusList"/>
-             </item>
-             <item>
-              <widget class="QComboBox" name="deleteSouvenirList"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QPushButton" name="deleteChosenSouvenir">
-             <property name="text">
-              <string>Delete</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
          <widget class="QPushButton" name="backBtn_2">
           <property name="geometry">
            <rect>
@@ -459,12 +460,43 @@
          <widget class="QTableView" name="deleteSouvenirTableView">
           <property name="geometry">
            <rect>
-            <x>330</x>
+            <x>190</x>
             <y>10</y>
-            <width>361</width>
+            <width>501</width>
             <height>281</height>
            </rect>
           </property>
+         </widget>
+         <widget class="QPushButton" name="deleteChosenSouvenir">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>100</y>
+            <width>75</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Delete</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>1</x>
+            <y>31</y>
+            <width>151</width>
+            <height>48</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QComboBox" name="chooseCampusList"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="deleteSouvenirList"/>
+           </item>
+          </layout>
          </widget>
         </widget>
        </widget>

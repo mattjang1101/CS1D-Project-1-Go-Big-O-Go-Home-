@@ -45,6 +45,12 @@ private slots:
 
     void on_deleteSouvenirs_clicked();
 
+    void on_addButton_clicked();
+
+    void on_chooseCampusList_currentIndexChanged(const QString &arg1);
+
+    void on_deleteChosenSouvenir_clicked();
+
 private:
     Ui::Admin *ui;
     QMainWindow MainObject;
