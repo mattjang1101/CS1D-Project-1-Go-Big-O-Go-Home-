@@ -1,4 +1,4 @@
-#ifndef DBMANAGER_H
+﻿#ifndef DBMANAGER_H
 #define DBMANAGER_H
 
 #include <QObject>
@@ -45,6 +45,30 @@ public:
 
 
     void BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance);
+
+    // InitializePurchasedSouvenirsTable()- Will insert all souvenirs from Souvenirs table into PurchasedSouvenirs table
+    void InitializePurchasedSouvenirsTable();
+
+    // DeletePurchasedSouvenirsTable()- Will delete contents from PurchasedSouvenirs table
+    void DeletePurchasedSouvenirsTable();
+
+    // IncrementQuantity() - Will increment the quantity of a particular souvenir in PurchasedSouvennirs table
+    void IncrementQuantity(QString collegeName, QString itemName);
+
+    // DeleteQuantities() - Will reset quantities for each souvenir to be 0 at a particular college
+    void DeleteQuantities(QString collegeName);
+
+
+//------------------------Angaar's Code--------------------------------//
+    void loadNewCampusInfoIntoCollegeDistances();
+    void deleteNewCampusInfoIntoCollegeDistances();
+
+    // loadAllColleges() - Loads all colleges from CollegeDistances table
+    QSqlQueryModel *loadAllColleges();
+
+    // Updates price of a certain souvenir
+    void UpdateSouvenirPrice(QString collegeName, QString souvenirName, double newPrice);
+
 
 
 private:

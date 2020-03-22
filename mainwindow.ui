@@ -764,7 +764,7 @@
        <rect>
         <x>10</x>
         <y>280</y>
-        <width>301</width>
+        <width>361</width>
         <height>271</height>
        </rect>
       </property>
@@ -785,8 +785,8 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>310</y>
+        <x>430</x>
+        <y>330</y>
         <width>151</width>
         <height>174</height>
        </rect>
@@ -883,7 +883,7 @@
         <x>530</x>
         <y>20</y>
         <width>321</width>
-        <height>201</height>
+        <height>291</height>
        </rect>
       </property>
       <property name="font">
@@ -919,16 +919,6 @@
       </property>
       <property name="digitCount">
        <number>7</number>
-      </property>
-     </widget>
-     <widget class="QTableView" name="purchasedItemsTableView">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>250</y>
-        <width>291</width>
-        <height>241</height>
-       </rect>
       </property>
      </widget>
     </widget>

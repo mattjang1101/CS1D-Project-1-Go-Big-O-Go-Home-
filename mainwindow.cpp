@@ -307,6 +307,7 @@ void MainWindow::on_SelectStartingCollegeButton_3_clicked()
     DeleteAlreadyVisitedCollegesTable();        // Will clear the AlreadyVisitedColleges table
     selectedCollegesVector.clear();             // clears the selected colleges vector
     ui->DistanceNumber->display("0");           // Initially sets the DistanceNumber widget to be 0
+    databaseObj.DeletePurchasedSouvenirsTable();    // Will clear the DeletePurchasedSouvenirs table
 }
 
 void MainWindow::on_AddQueueButton_clicked()
@@ -446,6 +447,8 @@ void MainWindow::on_DepartButton_clicked()
        return;
     }
 
+    databaseObj.InitializePurchasedSouvenirsTable();                // will initialize PurchasedSouvenirs table
+
     ui->stackedWidget->setCurrentWidget(ui->CampusPage);            // changes page to CampusPage
 
     // sets collegeName label to be first college's name
@@ -501,7 +504,13 @@ void MainWindow::on_purchaseSouvenirsButton_clicked()
         this->totalPrice += databaseObj.GetSouvenirPrice(college, souvenirItem);
         qDebug() << currentPrice;
         qDebug() << totalPrice;
-        ui->priceLCDNumber->display("$" + QString::number(currentPrice));
+
+        databaseObj.IncrementQuantity(college, souvenirItem);   // Will increment quantity of purchased souvenir
+
+         // Will reset the souvenirTableView to have updated information
+        ui->souvenirTableView->setModel(databaseObj.LoadSouvenirsByCollege(college, false));
+
+        ui->priceLCDNumber->display("$" + QString::number(currentPrice));   // Updates priceLCDNumber
 
     }
 }
@@ -509,9 +518,17 @@ void MainWindow::on_purchaseSouvenirsButton_clicked()
 // If user clicks delete while purchasing souvenirs, will modify currentPrice and totalPrice
 void MainWindow::on_deleteSouvenirsButton_clicked()
 {
+    QString college = ui->collegeNameLabel->text();
+
     this->totalPrice -= currentPrice;
     currentPrice = 0;
     ui->priceLCDNumber->display("$" + QString::number(currentPrice));
+
+    // Calls on DeleteQuantities() to reset quantities for each souvenir to 0 at given college
+    databaseObj.DeleteQuantities(college);
+
+    // Will reset the souvenirTableView to have updated information
+    ui->souvenirTableView->setModel(databaseObj.LoadSouvenirsByCollege(college, false));
 }
 
 // Will go to next college during the tour trip
@@ -528,9 +545,10 @@ void MainWindow::on_nextCollegeButton_clicked()
         QMessageBox::information(this, "Information", "Thank you for touring with us. Your total is : $ " + QString::number(totalPrice));
         totalPrice = 0; // resets totalPrice back to 0
 
-        // Deletes TourData table and AlreadyVisitedColleges table
+        // Deletes TourData table, AlreadyVisitedColleges table, and PurchasedSouvenirs table
         Delete_Tour_Data();
         DeleteAlreadyVisitedCollegesTable();
+        databaseObj.DeletePurchasedSouvenirsTable();
     }
     else {
         // Gets the nextCollege from vector
@@ -570,6 +588,7 @@ void MainWindow::on_LoadData_clicked()
     DeleteAlreadyVisitedCollegesTable();        // Will clear the AlreadyVisitedColleges table
     selectedCollegesVector.clear();             // clears the selected colleges vector
     ui->DistanceLCDctr->display("0");           // Initially sets the DistanceNumber widget to be 0
+    databaseObj.DeletePurchasedSouvenirsTable();    // Will clear PurchasedSouvenirs table
 }
 
 
@@ -725,6 +744,8 @@ void MainWindow::on_DepartButton_12_clicked()
        QMessageBox::warning(this, "Warning", "Please select a college");
        return;
     }
+
+    databaseObj.InitializePurchasedSouvenirsTable();                // will initialize PurchasedSouvenirs table
 
     ui->stackedWidget->setCurrentWidget(ui->CampusPage);            // changes page to CampusPage
 

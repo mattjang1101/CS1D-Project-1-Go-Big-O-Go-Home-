@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include "dbmanager.h"
+#include <QMessageBox>
 using namespace std;
 
 namespace Ui {
@@ -27,6 +28,22 @@ private slots:
     void on_revertButton_clicked();
 
     void on_ChangePricesButton_clicked();
+
+    void on_loadSouvenirsAdminBtn_clicked();
+
+    void on_collegeListComboBox_currentIndexChanged(const QString &arg1);
+
+    void on_changePriceBtn_clicked();
+
+
+
+    void on_backBtn_clicked();
+
+    void on_backBtn_2_clicked();
+
+    void on_addSouvenirs_clicked();
+
+    void on_deleteSouvenirs_clicked();
 
 private:
     Ui::Admin *ui;

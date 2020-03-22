@@ -141,7 +141,10 @@ QSqlQueryModel *DBManager::LoadSouvenirsByCollege(QString collegeName, bool souv
     QSqlQuery qry;
 
     if(!souvenirsOnly) {
-        qry.prepare("SELECT * from Souvenirs where college = '"+collegeName+"';");
+       // qry.prepare("SELECT * from Souvenirs where college = '"+collegeName+"';");
+        qry.prepare("select Souvenirs.college, traditionalSouvenirs, cost, quantity from Souvenirs, PurchasedSouvenirs where "
+                    "Souvenirs.college = PurchasedSouvenirs.college and Souvenirs.traditionalSouvenirs = PurchasedSouvenirs.souvenir "
+                    "and Souvenirs.college = '"+collegeName+"' group by traditionalSouvenirs");
     }
     else {
         qry.prepare("Select traditionalSouvenirs from Souvenirs where college = '"+collegeName+"';");
@@ -226,5 +229,120 @@ void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVect
     // changes startingCollege to be closestCollege, and calls the function again
     startingCollege = closestCollege;
     BeginTrip(startingCollege, collegesVector, totalDistance);
+}
+
+// InitializePurchasedSouvenirsTable()- Will insert all souvenirs from Souvenirs table into PurchasedSouvenirs table
+void DBManager::InitializePurchasedSouvenirsTable()
+{
+    QSqlQuery qry;
+
+    qry.prepare("insert into PurchasedSouvenirs (college, souvenir, quantity) select college, traditionalSouvenirs, 0 from Souvenirs;");
+    if(!qry.exec()) {
+        qDebug() << "Can't insert into PurchasedSouvenirs table!";
+    }
+}
+
+// DeletePurchasedSouvenirsTable()- Will delete contents from PurchasedSouvenirs table
+void DBManager::DeletePurchasedSouvenirsTable()
+{
+    QSqlQuery qry;
+
+    qry.prepare("delete from PurchasedSouvenirs;");
+    if(!qry.exec()) {
+        qDebug() << "Can't delete contents in PurchasedSouvenirs table!";
+    }
+}
+
+
+// IncrementQuantity() - Will increment the quantity of a particular souvenir in PurchasedSouvennirs table
+void DBManager::IncrementQuantity(QString collegeName, QString itemName)
+{
+    QSqlQuery qry;
+
+    qry.prepare("UPDATE PurchasedSouvenirs set quantity = quantity + 1 "
+                "where college = '"+collegeName+"' and souvenir = '"+itemName+"';");
+    if(!qry.exec()) {
+        qDebug() << "Can't increment quantity!";
+    }
+}
+
+  // DeleteQuantities() - Will reset quantities for each souvenir to be 0 at a particular college
+void DBManager::DeleteQuantities(QString collegeName)
+{
+    QSqlQuery qry;
+
+    qry.prepare("UPDATE PurchasedSouvenirs set quantity = 0 where college = '"+collegeName+"';");
+    if(!qry.exec()) {
+        qDebug() << "Can't resent quantity to 0!";
+    }
+}
+
+
+
+//------------------------Angaar's Code--------------------------------//
+void DBManager::loadNewCampusInfoIntoCollegeDistances()
+{
+
+
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO CollegeDistances(startingCollege, endingCollege, distanceBetween) SELECT startingCollege, endingCollege, distanceBetween FROM NewCampuses");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not add to Queue. . ." << endl;
+    }
+    else
+        qDebug() << "Successful insertion into Database" << endl;
+
+}
+
+void DBManager::deleteNewCampusInfoIntoCollegeDistances()
+{
+
+    QSqlQuery qry;
+
+     qry.prepare("DELETE FROM CollegeDistances "
+                 "WHERE (startingCollege, endingCollege, distanceBetween)"
+                 " IN (SELECT startingCollege, endingCollege, distanceBetween FROM NewCampuses);");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not delete new Database. . ." << endl;
+    }
+    else
+        qDebug() << "Successful deletion into Database" << endl;
+
+}
+
+// loadAllColleges() - Loads all colleges from CollegeDistances table
+QSqlQueryModel *DBManager::loadAllColleges()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QSqlQuery qry;
+
+    qry.prepare("Select * from CollegeDistances;");
+    if(!qry.exec()) {
+       qDebug() <<"Error! Could not load CollegeDistances . ." << endl;
+    }
+
+    model->setQuery(qry);
+    return model;
+}
+
+   // Updates price of a certain souvenir
+void DBManager::UpdateSouvenirPrice(QString collegeName, QString souvenirName, double newPrice)
+{
+    QSqlQuery qry;
+
+    // Updates price of the given souvenir
+    qry.prepare("UPDATE Souvenirs SET cost = "+QString::number(newPrice)+" where college = '"+collegeName+"' and traditionalSouvenirs = '"+souvenirName+"';");
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not change souvenir prices in database. . ." << endl;
+    }
+    else {
+        qDebug() << "Successful change souvenir prices in database" << endl;
+    }
+
 }
 
