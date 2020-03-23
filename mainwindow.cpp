@@ -1,9 +1,11 @@
+/// Preprocessor Directives
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QUrl>
 
+/// \brief MainWindow
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -21,12 +23,13 @@ MainWindow::MainWindow(QWidget *parent)
     currentPrice = 0;
 }
 
+/// \brief ~MainWindow
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-// GetPicturePath() - Gets college picture path depending on the college passed in
+/// \briefGetPicturePath
 QString MainWindow::GetPicturePath(QString collegeName)
 {
     // PROCESSING - Sets pixel depending on what college the first college is
@@ -74,7 +77,7 @@ QString MainWindow::GetPicturePath(QString collegeName)
     return picturePath;
 }
 
-// Gets college's description
+/// \brief GetCollegeDescription
 QString MainWindow::GetCollegeDescription(QString collegeName)
 {
     // PROCESSING - Sets description depending on what college the college is
@@ -180,15 +183,11 @@ QString MainWindow::GetCollegeDescription(QString collegeName)
 
     return collegeDescription;
 }
-    //---------------------------MAIN MENU CODE-----------------------------------------//
+
+///---------------------------MAIN MENU CODE-----------------------------------------//
 
 
-/*******************************************************
- * on_loginPushBtn2_clicked() -
- *  This function error checks for right username and
- *  password. If admin logs in, then the program will
- *  display the admin page.
- *******************************************************/
+/// \brief on_loginPushBtn_2_clicked
 void MainWindow::on_loginPushBtn_2_clicked()
 {
     QString username = ui->usernameLineEdit->text();
@@ -207,28 +206,20 @@ void MainWindow::on_loginPushBtn_2_clicked()
     }
 }
 
+/// \brief keyPressEvent
 void MainWindow::keyPressEvent(QKeyEvent* pe)
 {
-if(pe->key() == Qt::Key_Return) on_loginPushBtn_2_clicked();                   //Enter Key works as input for buttonLogin()
+    if(pe->key() == Qt::Key_Return) on_loginPushBtn_2_clicked();                   //Enter Key works as input for buttonLogin()
 }
 
-/*******************************************************
- * on_clearPushBtn_clicked() -
- *  Once a user presses the clear button, it will clear
- *  the username and password line edits
- *******************************************************/
+/// \brief on_clearPushBtn_2_clicked
 void MainWindow::on_clearPushBtn_2_clicked()
 {
     ui->usernameLineEdit->clear();
     ui->passwordLineEdit->clear();
 }
 
-//void MainWindow::showTable(QSqlQueryModel *model)
-//{
-//    ui->tableView->setModel(model);     // showTable() shows the QSqlQueryModel database model to the tableview
-//    ui->QueueTableView->setModel(model);
-//}
-
+/// \brief on_DisplayCampusInfo_clicked
 void MainWindow::on_DisplayCampusInfo_clicked()
 {
     //showTable(databaseObj.loadCampusInfo());
@@ -236,6 +227,7 @@ void MainWindow::on_DisplayCampusInfo_clicked()
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
+/// \brief on_DisplaySouvenirs_clicked
 void MainWindow::on_DisplaySouvenirs_clicked()
 {
     //showTable(databaseObj.loadSouvenirs());
@@ -243,19 +235,22 @@ void MainWindow::on_DisplaySouvenirs_clicked()
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
+/// \brief on_StartTour_clicked
 void MainWindow::on_StartTour_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-    //----------------------------PLANNING PAGE CODE-----------------------------------------//
+///----------------------------PLANNING PAGE CODE-----------------------------------------//
 
+/// \brief on_SelectStartingCollegeButton_clicked
 void MainWindow::on_SelectStartingCollegeButton_clicked()
 {
     ui->StartingCollegeComboBox->setModel(databaseObj.loadStartingCollegeList());
     ui->DistancesTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
+/// \brief on_StartingCollegeComboBox_currentIndexChanged
 void MainWindow::on_StartingCollegeComboBox_currentIndexChanged(const QString &arg1)
 {
     QString SelectedCollege = ui->StartingCollegeComboBox->currentText();
@@ -279,24 +274,27 @@ void MainWindow::on_StartingCollegeComboBox_currentIndexChanged(const QString &a
 
 }
 
+/// \brief on_PlanCustomTripButton_clicked
 void MainWindow::on_PlanCustomTripButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
 
+/// \brief on_PrePlannedButton_clicked
 void MainWindow::on_PrePlannedButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
 }
 
+/// \brief on_backButton_1_clicked
 void MainWindow::on_backButton_1_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-    //----------------------------CUSTOM TOUR PAGE CODE-----------------------------------------//
+///----------------------------CUSTOM TOUR PAGE CODE-----------------------------------------//
 
-
+/// \brief on_SelectStartingCollegeButton_3_clicked
 void MainWindow::on_SelectStartingCollegeButton_3_clicked()
 {
     ui->StartingPointBox->setModel(databaseObj.loadStartingCollegeList());
@@ -307,8 +305,10 @@ void MainWindow::on_SelectStartingCollegeButton_3_clicked()
     DeleteAlreadyVisitedCollegesTable();        // Will clear the AlreadyVisitedColleges table
     selectedCollegesVector.clear();             // clears the selected colleges vector
     ui->DistanceNumber->display("0");           // Initially sets the DistanceNumber widget to be 0
+    databaseObj.DeletePurchasedSouvenirsTable();    // Will clear the DeletePurchasedSouvenirs table
 }
 
+/// \brief on_AddQueueButton_clicked
 void MainWindow::on_AddQueueButton_clicked()
 {
     QString AddToQueue = ui->StartingPointBox->currentText();
@@ -332,27 +332,18 @@ void MainWindow::on_AddQueueButton_clicked()
     else
         qDebug() << "Successful insertion into Database" << endl;
 
-   // ui->QueueTableView->setModel(databaseObj.loadTourQueueData());
-
     // Because databaseObj.loadTourQueueData() displays in an incorrect form in QueueTableView, we set
     // the model to be based off the vector (in correct order)
     ui->QueueTableView->setModel(new QStringListModel(QList<QString>::fromVector(selectedCollegesVector)));
 
 
-//    qry.prepare("SELECT COUNT(Queue)  FROM TourData");                    *GETS COUNT OF Queue COLUMN*
 }
 
+/// \brief on_DeleteQueueButton_clicked
 void MainWindow::on_DeleteQueueButton_clicked()
 {
     QString removingCollege = selectedCollegesVector.last(); // returns the last item in the vector
     QSqlQuery qry;
-//    qry.prepare("DELETE FROM TourData WHERE Queue = (SELECT MAX(Queue) FROM TourData);");            *CLEARS ENTIRE QUEUE*
-
-//    qry.prepare("DELETE FROM TourData "
-//                "WHERE Queue = (SELECT Queue"
-//                "               FROM TourData"
-//                "               ORDER BY Queue DESC"
-//                "               LIMIT 1)");
     qry.prepare("Delete from TourData where Queue = '"+removingCollege+"';");
 
     if(!qry.exec())
@@ -367,8 +358,7 @@ void MainWindow::on_DeleteQueueButton_clicked()
     ui->QueueTableView->setModel(new QStringListModel(QList<QString>::fromVector(selectedCollegesVector)));
 }
 
-/*on_SortQueue_clicked() - Once clicked, it will sort the Queue Table View by
-order of efficiency */
+/// \brief on_SortQueue_clicked
 void MainWindow::on_SortQueue_clicked()
 {
     // If the user clicks sort without selecting any colleges, then an error message will be displayed
@@ -395,14 +385,13 @@ void MainWindow::on_SortQueue_clicked()
     ui->DistanceNumber->display(QString::number(totalDistance));    // Displays the totalDistance onto the DistanceNumber widget
 }
 
-
+/// \brief on_backButton_2_clicked
 void MainWindow::on_backButton_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-/* Delete_Tour_Data() - Will clear everything from TourData table
- */
+/// \brief Delete_Tour_Data
 void MainWindow::Delete_Tour_Data()
 {
     QSqlQuery qry;
@@ -412,8 +401,7 @@ void MainWindow::Delete_Tour_Data()
     }
 }
 
-/* DeleteAlreadyVisitedTable() - Will clear everything from AlreadyVisitedTable
- */
+/// \brief DeleteAlreadyVisitedCollegesTable
 void MainWindow::DeleteAlreadyVisitedCollegesTable()
 {
     QSqlQuery qry;
@@ -423,7 +411,7 @@ void MainWindow::DeleteAlreadyVisitedCollegesTable()
     }
 }
 
-    // DepartButton() - Will officially start the trip
+/// \brief on_DepartButton_clicked
 void MainWindow::on_DepartButton_clicked()
 {
     // selects colleges from AlreadyVisitedColleges table
@@ -445,6 +433,8 @@ void MainWindow::on_DepartButton_clicked()
        QMessageBox::warning(this, "Warning", "Please select a college");
        return;
     }
+
+    databaseObj.InitializePurchasedSouvenirsTable();                // will initialize PurchasedSouvenirs table
 
     ui->stackedWidget->setCurrentWidget(ui->CampusPage);            // changes page to CampusPage
 
@@ -471,13 +461,15 @@ void MainWindow::on_DepartButton_clicked()
 
 }
 
+///----------------------------CAMPUS VISIT PAGE CODE-----------------------------------------//
 
+/// \brief on_backButton_7_clicked
 void MainWindow::on_backButton_7_clicked()
 {
     on_backButton_6_clicked();
 }
 
-
+/// \brief on_loadSouvenirButton_clicked
 // loads souvenirComboBox with souvenirs corresponding to the college
 void MainWindow::on_loadSouvenirButton_clicked()
 {
@@ -486,6 +478,7 @@ void MainWindow::on_loadSouvenirButton_clicked()
 
 }
 
+/// \brief on_purchaseSouvenirsButton_clicked
 // enables one to purchase chosen souvenir at a given college
 void MainWindow::on_purchaseSouvenirsButton_clicked()
 {
@@ -500,19 +493,35 @@ void MainWindow::on_purchaseSouvenirsButton_clicked()
         this->totalPrice += databaseObj.GetSouvenirPrice(college, souvenirItem);
         qDebug() << currentPrice;
         qDebug() << totalPrice;
-        ui->priceLCDNumber->display("$" + QString::number(currentPrice));
+
+        databaseObj.IncrementQuantity(college, souvenirItem);   // Will increment quantity of purchased souvenir
+
+         // Will reset the souvenirTableView to have updated information
+        ui->souvenirTableView->setModel(databaseObj.LoadSouvenirsByCollege(college, false));
+
+        ui->priceLCDNumber->display("$" + QString::number(currentPrice));   // Updates priceLCDNumber
 
     }
 }
 
+/// \brief on_deleteSouvenirsButton_clicked
 // If user clicks delete while purchasing souvenirs, will modify currentPrice and totalPrice
 void MainWindow::on_deleteSouvenirsButton_clicked()
 {
+    QString college = ui->collegeNameLabel->text();
+
     this->totalPrice -= currentPrice;
     currentPrice = 0;
     ui->priceLCDNumber->display("$" + QString::number(currentPrice));
+
+    // Calls on DeleteQuantities() to reset quantities for each souvenir to 0 at given college
+    databaseObj.DeleteQuantities(college);
+
+    // Will reset the souvenirTableView to have updated information
+    ui->souvenirTableView->setModel(databaseObj.LoadSouvenirsByCollege(college, false));
 }
 
+/// \brief on_nextCollegeButton_clicked
 // Will go to next college during the tour trip
 void MainWindow::on_nextCollegeButton_clicked()
 {
@@ -527,9 +536,10 @@ void MainWindow::on_nextCollegeButton_clicked()
         QMessageBox::information(this, "Information", "Thank you for touring with us. Your total is : $ " + QString::number(totalPrice));
         totalPrice = 0; // resets totalPrice back to 0
 
-        // Deletes TourData table and AlreadyVisitedColleges table
+        // Deletes TourData table, AlreadyVisitedColleges table, and PurchasedSouvenirs table
         Delete_Tour_Data();
         DeleteAlreadyVisitedCollegesTable();
+        databaseObj.DeletePurchasedSouvenirsTable();
     }
     else {
         // Gets the nextCollege from vector
@@ -552,17 +562,204 @@ void MainWindow::on_nextCollegeButton_clicked()
 }
 
 
-    //-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
+///-----------------------------PRE PLANNED TOUR PAGE CODE-----------------------------------------//
 
+/// \brief on_backButton_6_clicked
 void MainWindow::on_backButton_6_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+/// \brief on_LoadData_clicked
 void MainWindow::on_LoadData_clicked()
 {
     ui->CollegeSelectBox->setModel(databaseObj.loadStartingCollegeList());
     ui->PrePQueueTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    Delete_Tour_Data();                         // Deletes TourData table so it can be reused
+    ui->PrePQueueTable->setModel(databaseObj.loadTourQueueData());  // clears TourTableView
+    DeleteAlreadyVisitedCollegesTable();        // Will clear the AlreadyVisitedColleges table
+    selectedCollegesVector.clear();             // clears the selected colleges vector
+    ui->DistanceLCDctr->display("0");           // Initially sets the DistanceNumber widget to be 0
+    databaseObj.DeletePurchasedSouvenirsTable();    // Will clear PurchasedSouvenirs table
+}
+
+/// \brief on_SortAmount_clicked
+void MainWindow::on_SortAmount_clicked()
+{
+    // Inserts selected Combo Box item as first value to be stored in Vector
+    QString AddToQueue = ui->CollegeSelectBox->currentText();
+
+    // If the vector already contains the college, then it won't add
+    // Otherwise, it adds
+    if(selectedCollegesVector.contains(AddToQueue)) {
+        qDebug() << "Can't add duplicates!";
+    }
+    else {
+        selectedCollegesVector.append(AddToQueue);
+    }
+
+    //Inserts Value into Data Table in SQLite
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO TourData(Queue) VALUES('"+AddToQueue+"')");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not add to Queue. . ." << endl;
+    }
+    else
+        qDebug() << "Successful insertion into Database (:" << endl;
+
+    // Inserts into the already visited colleges table the first college
+    QString startingCollege = selectedCollegesVector.at(0);    // Gets first college from table
+
+    qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
+
+    if(!qry.exec()) {
+         qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
+    }
+
+
+    // Code that inserts desired amount of visits in order by random choice
+    int amount = ui->DesiredAmtBox->currentText().toInt();
+    qDebug() << amount;
+    qDebug() << AddToQueue;
+
+    for(int i = 1; i < amount; i++)
+    {
+        QString tempName;
+        qry.prepare("SELECT DISTINCT startingCollege FROM CollegeDistances WHERE startingCollege NOT IN (Select CollegeName from AlreadyVisitedColleges) "
+                    "AND startingCollege NOT IN (SELECT Queue from TourData) ORDER BY RANDOM() LIMIT 1");
+
+        // Stores the randomly chosen college to the list
+        if(!qry.exec())
+        {
+            qDebug() << "Can't execute sql statement!";
+        }
+        if(qry.next())
+        {
+            tempName = qry.value(0).toString();
+        }
+
+        qDebug() << tempName;
+
+        if(selectedCollegesVector.contains(tempName))
+        {
+            qDebug() << "Can't add duplicates ! ! ! !";
+        }
+        else
+        {
+            selectedCollegesVector.append(tempName);
+        }
+
+        qry.prepare("INSERT INTO TourData(Queue) VALUES('"+tempName+"')");
+
+        if(!qry.exec())
+        {
+            qDebug() <<"Error! Could not add to Queue. . :(" << endl;
+        }
+        else
+            qDebug() << "Successful insertion into Database (;" << endl;
+
+
+        // Inserts into the already visited colleges table the first college
+        QString startingCollege = selectedCollegesVector.at(0);    // Gets first college from table
+
+        qry.prepare("INSERT into AlreadyVisitedColleges(CollegeName) VALUES('"+ startingCollege + "');");
+
+        if(!qry.exec())
+        {
+             qDebug() <<"Error! Could not insert into AlreadyVisitedColleges!. . ." << endl;
+        }
+
+    }
+
+
+    // Because databaseObj.loadTourQueueData() displays in an incorrect form in QueueTableView, we set
+    // the model to be based off the vector (in correct order)
+    ui->PrePQueueTable->setModel(new QStringListModel(QList<QString>::fromVector(selectedCollegesVector)));
+
+    // If the user clicks sort without selecting any colleges, then an error message will be displayed
+    if(selectedCollegesVector.isEmpty())
+    {
+       QMessageBox::warning(this, "Warning", "Please select a college");
+       return;
+    }
+
+    double totalDistance = 0;
+
+    databaseObj.BeginTrip(startingCollege, selectedCollegesVector, totalDistance);
+
+    ui->PrePQueueTable->setModel(databaseObj.loadAlreadyVisitedCollegesTable());    // Displays newly sorted table
+    ui->DistanceLCDctr->display(QString::number(totalDistance));    // Displays the totalDistance onto the DistanceNumber widget
 }
 
 
+/// \brief on_DeleteButton_clicked
+void MainWindow::on_DeleteButton_clicked()
+{
+    QString removingCollege = selectedCollegesVector.last(); // returns the last item in the vector
+    QSqlQuery qry;
+
+    qry.prepare("Delete from TourData where Queue = '"+removingCollege+"';");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not delete Queue data. . ." << endl;
+
+    }
+
+    selectedCollegesVector.pop_back(); // removes from the vector the last element that was added
+
+    // Sets table view to be the vector contents
+    ui->PrePQueueTable->setModel(new QStringListModel(QList<QString>::fromVector(selectedCollegesVector)));
+}
+
+/// \brief on_DepartButton_12_clicked
+void MainWindow::on_DepartButton_12_clicked()
+{
+    // selects colleges from AlreadyVisitedColleges table
+    QSqlQuery qry;
+    qry.prepare("Select CollegeName from AlreadyVisitedColleges;");
+
+    if(!qry.exec()) {
+        qDebug() << "Can't add sorted colleges to vector!";
+    }
+
+    // appends newly sorted colleges into the vector
+    selectedCollegesVector.clear();
+    while(qry.next()) {
+        selectedCollegesVector.append(qry.value(0).toString());
+    }
+
+    // If user doesn't have any colleges, then an error message will appear
+    if(selectedCollegesVector.isEmpty()) {
+       QMessageBox::warning(this, "Warning", "Please select a college");
+       return;
+    }
+
+    databaseObj.InitializePurchasedSouvenirsTable();                // will initialize PurchasedSouvenirs table
+
+    ui->stackedWidget->setCurrentWidget(ui->CampusPage);            // changes page to CampusPage
+
+    // sets collegeName label to be first college's name
+    QString firstCollege = selectedCollegesVector.at(0);
+    ui->collegeNameLabel->setText(firstCollege);
+
+    // sets collegeDescription for text browser
+    ui->collegeDescriptionTextBrowser->setText(GetCollegeDescription(firstCollege));
+
+    // PROCESSING - Sets picture path depending on firstCollege
+    QString pixelPath = GetPicturePath(firstCollege);
+    QPixmap pix(pixelPath);
+    int w = ui->collegePicturesLabel->width();
+    int h = ui->collegePicturesLabel->height();
+    ui->collegePicturesLabel->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio,Qt::SmoothTransformation));
+
+    // Sets the souvenir table view for the corresponding college
+    ui->souvenirTableView->setModel(databaseObj.LoadSouvenirsByCollege(firstCollege, false));
+
+    this->currentPrice = 0; // sets current price of each college equal to 0
+    this->totalPrice = 0;   // sets total price equal to 0
+    ui->priceLCDNumber->display("0");
+}

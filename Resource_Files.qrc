@@ -1,5 +1,18 @@
 <RCC>
     <qresource prefix="/Images">
         <file>MainWindow_Logo.png</file>
+        <file>College Images/Arizona state.jpg</file>
+        <file>College Images/Cal state fullerton.jpg</file>
+        <file>College Images/MIT.jpg</file>
+        <file>College Images/Northwestern.jpg</file>
+        <file>College Images/Ohio state.jpg</file>
+        <file>College Images/Saddleback college.jpg</file>
+        <file>College Images/UCI.jpg</file>
+        <file>College Images/UCLA.jpg</file>
+        <file>College Images/University of Michigan.jpg</file>
+        <file>College Images/University of Oregon.jpg</file>
+        <file>College Images/University of Texas.jpg</file>
+        <file>College Images/University of the Pacific.jpg</file>
+        <file>College Images/University of Wisconsin.jpg</file>
     </qresource>
 </RCC>

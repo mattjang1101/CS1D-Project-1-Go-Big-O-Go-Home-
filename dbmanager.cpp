@@ -1,10 +1,12 @@
+/// Preprocessor Directive
 #include "dbmanager.h"
 
+/// \brief Constructor
 DBManager::DBManager()
 {
     // Connecting to database
     m_database = QSqlDatabase::addDatabase("QSQLITE");
-    m_database.setDatabaseName("/home/angaar/CS1D/GoBigOGoHome/CS1D-Project-1-Go-Big-O-Go-Home/CS1DProject1.db");
+    m_database.setDatabaseName("/home/angaar/CS1D/GoBigOGoHome/CS1D-Project-1-Go-Big-O-Go-Home--matt/CS1DProject1.db");
 
     if(!m_database.open())
     {
@@ -12,20 +14,10 @@ DBManager::DBManager()
     }
 }
 
+/// \brief Destructor
 DBManager::~DBManager(){}
 
-/*******************************************************
-* loadEntries() -
-*  This function helps the program read the contents.
-*  from the database. This function primarily uses
-*  the query function, "select * from". The database
-*  in which it is selected from is called customer.
-*  Throughout the process, the data returned is
-*  is stored in the table created in createTable().
-*  If the database or data has trouble storing the
-*  values, it will output "error loading values to
-*  db". Returns pointer
-*******************************************************/
+/// \brief loadCampusInfo
 QSqlQueryModel *DBManager::loadCampusInfo()
 {
     QString Saddleback = "Saddleback College";
@@ -47,79 +39,13 @@ QSqlQueryModel *DBManager::loadCampusInfo()
     return model;
 }
 
-
-
-
-QSqlQueryModel *DBManager::loadNewCampusInfoIntoCollegeDistances()
-{
-    QSqlQueryModel* model = new QSqlQueryModel();
-
-    QSqlQuery qry;
-    qry.prepare("INSERT INTO CollegeDistances(startingCollege, endingCollege, distanceBetween) SELECT startingCollege, endingCollege, distanceBetween FROM NewCampuses");
-
-    if(!qry.exec())
-    {
-        qDebug() <<"Error! Could not add to Queue. . ." << endl;
-    }
-    else
-        qDebug() << "Successful insertion into Database" << endl;
-
-    model->setQuery(qry);
-
-    return model;
-}
-
-QSqlQueryModel *DBManager::deleteNewCampusInfoIntoCollegeDistances()
-{
-    QSqlQueryModel* model = new QSqlQueryModel();
-
-    QSqlQuery qry;
-
-     qry.prepare("DELETE FROM CollegeDistances "
-                 "WHERE (startingCollege, endingCollege, distanceBetween)"
-                 " IN (SELECT startingCollege, endingCollege, distanceBetween FROM NewCampuses);");
-
-    if(!qry.exec())
-    {
-        qDebug() <<"Error! Could not delete new Database. . ." << endl;
-    }
-    else
-        qDebug() << "Successful deletion into Database" << endl;
-
-    model->setQuery(qry);
-
-    return model;
-}
-
-/*
-QSqlQueryModel *changeCampusSouvenirPrices()
-{
-    QSqlQueryModel* model = new QSqlQueryModel();
-
-    QSqlQuery qry;
-
-     //qry.prepare("UPDATE Souvenirs SET
-    if(!qry.exec())
-    {
-        qDebug() <<"Error! Could not change souvenir prices in database. . ." << endl;
-    }
-    else
-        qDebug() << "Successful change souvenir prices in database" << endl;
-
-    model->setQuery(qry);
-
-    return model;
-
-}
-*/
-
-
+/// \brief loadSouvenirs
 QSqlQueryModel *DBManager::loadSouvenirs()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
 
     QSqlQuery qry;
-    qry.prepare("SELECT college, traditionalSouvenirs, cost FROM Souvenirs");
+    qry.prepare("SELECT college, traditionalSouvenirs, cost FROM Souvenirs order by college");
 
     if(!qry.exec())
     {
@@ -131,6 +57,7 @@ QSqlQueryModel *DBManager::loadSouvenirs()
     return model;
 }
 
+/// \brief loadStartingCollegeList
 QSqlQueryModel *DBManager::loadStartingCollegeList()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -148,6 +75,7 @@ QSqlQueryModel *DBManager::loadStartingCollegeList()
     return model;
 }
 
+/// \brief loadTourQueueData
 QSqlQueryModel *DBManager::loadTourQueueData()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -165,6 +93,7 @@ QSqlQueryModel *DBManager::loadTourQueueData()
     return model;
 }
 
+/// \brief loadNextDestination
 QSqlQueryModel *DBManager::loadNextDestination()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -182,7 +111,7 @@ QSqlQueryModel *DBManager::loadNextDestination()
     return model;
 }
 
-// loadAlreadyVisitedCollegesTable() - Returns a QSqlQueryModel consisting of information from AlreadyVisitedColleges table
+/// \brief loadAlreadyVisitedCollegesTable
 QSqlQueryModel *DBManager::loadAlreadyVisitedCollegesTable()
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -200,6 +129,7 @@ QSqlQueryModel *DBManager::loadAlreadyVisitedCollegesTable()
     return model;
 }
 
+/// \brief LoadSouvenirsByCollege
 QSqlQueryModel *DBManager::LoadSouvenirsByCollege(QString collegeName, bool souvenirsOnly)
 {
     QSqlQueryModel* model = new QSqlQueryModel();
@@ -207,7 +137,10 @@ QSqlQueryModel *DBManager::LoadSouvenirsByCollege(QString collegeName, bool souv
     QSqlQuery qry;
 
     if(!souvenirsOnly) {
-        qry.prepare("SELECT * from Souvenirs where college = '"+collegeName+"';");
+       // qry.prepare("SELECT * from Souvenirs where college = '"+collegeName+"';");
+        qry.prepare("select Souvenirs.college, traditionalSouvenirs, cost, quantity from Souvenirs, PurchasedSouvenirs where "
+                    "Souvenirs.college = PurchasedSouvenirs.college and Souvenirs.traditionalSouvenirs = PurchasedSouvenirs.souvenir "
+                    "and Souvenirs.college = '"+collegeName+"' group by traditionalSouvenirs");
     }
     else {
         qry.prepare("Select traditionalSouvenirs from Souvenirs where college = '"+collegeName+"';");
@@ -223,7 +156,7 @@ QSqlQueryModel *DBManager::LoadSouvenirsByCollege(QString collegeName, bool souv
     return model;
 }
 
-    // GetSouvenirPrice() - Returns price of the corresponding item at a given college
+/// \brief GetSouvenirPrice
 double DBManager::GetSouvenirPrice(QString collegeName, QString itemName)
 {
     double price;
@@ -244,7 +177,7 @@ double DBManager::GetSouvenirPrice(QString collegeName, QString itemName)
     return price;
 }
 
-// BeginTrip() - Will recursively order the trip in terms of efficiency
+/// \brief BeginTrip
 void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVector, double &totalDistance)
 {
     QSqlQuery qry;
@@ -293,3 +226,119 @@ void DBManager::BeginTrip(QString startingCollege, QVector<QString> collegesVect
     startingCollege = closestCollege;
     BeginTrip(startingCollege, collegesVector, totalDistance);
 }
+
+/// \brief InitializePurchasedSouvenirsTable
+void DBManager::InitializePurchasedSouvenirsTable()
+{
+    QSqlQuery qry;
+
+    qry.prepare("insert into PurchasedSouvenirs (college, souvenir, quantity) select college, traditionalSouvenirs, 0 from Souvenirs;");
+    if(!qry.exec()) {
+        qDebug() << "Can't insert into PurchasedSouvenirs table!";
+    }
+}
+
+/// \brief DeletePurchasedSouvenirsTable
+void DBManager::DeletePurchasedSouvenirsTable()
+{
+    QSqlQuery qry;
+
+    qry.prepare("delete from PurchasedSouvenirs;");
+    if(!qry.exec()) {
+        qDebug() << "Can't delete contents in PurchasedSouvenirs table!";
+    }
+}
+
+
+/// \brief IncrementQuantity
+void DBManager::IncrementQuantity(QString collegeName, QString itemName)
+{
+    QSqlQuery qry;
+
+    qry.prepare("UPDATE PurchasedSouvenirs set quantity = quantity + 1 "
+                "where college = '"+collegeName+"' and souvenir = '"+itemName+"';");
+    if(!qry.exec()) {
+        qDebug() << "Can't increment quantity!";
+    }
+}
+
+/// \brief DeleteQuantities
+void DBManager::DeleteQuantities(QString collegeName)
+{
+    QSqlQuery qry;
+
+    qry.prepare("UPDATE PurchasedSouvenirs set quantity = 0 where college = '"+collegeName+"';");
+    if(!qry.exec()) {
+        qDebug() << "Can't resent quantity to 0!";
+    }
+}
+
+
+/// \brief loadNewCampusInfoIntoCollegeDistances
+void DBManager::loadNewCampusInfoIntoCollegeDistances()
+{
+
+
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO CollegeDistances(startingCollege, endingCollege, distanceBetween) SELECT startingCollege, endingCollege, distanceBetween FROM NewCampuses");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not add to Queue. . ." << endl;
+    }
+    else
+        qDebug() << "Successful insertion into Database" << endl;
+
+}
+
+/// \brief deleteNewCampusInfoIntoCollegeDistances
+void DBManager::deleteNewCampusInfoIntoCollegeDistances()
+{
+
+    QSqlQuery qry;
+
+     qry.prepare("DELETE FROM CollegeDistances "
+                 "WHERE (startingCollege, endingCollege, distanceBetween)"
+                 " IN (SELECT startingCollege, endingCollege, distanceBetween FROM NewCampuses);");
+
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not delete new Database. . ." << endl;
+    }
+    else
+        qDebug() << "Successful deletion into Database" << endl;
+
+}
+
+/// \brief loadAllColleges
+QSqlQueryModel *DBManager::loadAllColleges()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QSqlQuery qry;
+
+    qry.prepare("Select * from CollegeDistances;");
+    if(!qry.exec()) {
+       qDebug() <<"Error! Could not load CollegeDistances . ." << endl;
+    }
+
+    model->setQuery(qry);
+    return model;
+}
+
+/// \brief UpdateSouvenirPrice
+void DBManager::UpdateSouvenirPrice(QString collegeName, QString souvenirName, double newPrice)
+{
+    QSqlQuery qry;
+
+    // Updates price of the given souvenir
+    qry.prepare("UPDATE Souvenirs SET cost = "+QString::number(newPrice)+" where college = '"+collegeName+"' and traditionalSouvenirs = '"+souvenirName+"';");
+    if(!qry.exec())
+    {
+        qDebug() <<"Error! Could not change souvenir prices in database. . ." << endl;
+    }
+    else {
+        qDebug() << "Successful change souvenir prices in database" << endl;
+    }
+
+}
+
