@@ -139,7 +139,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="AddDeleteSouvenir">
          <widget class="QTabWidget" name="tabWidget_2">
@@ -158,31 +158,31 @@
            <attribute name="title">
             <string>Tab 1</string>
            </attribute>
-           <widget class="QPushButton" name="deleteSouvenirs">
-            <property name="geometry">
-             <rect>
-              <x>60</x>
-              <y>110</y>
-              <width>89</width>
-              <height>23</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Delete Souvenirs</string>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="addSouvenirs">
+           <widget class="QWidget" name="">
             <property name="geometry">
              <rect>
               <x>60</x>
               <y>30</y>
-              <width>81</width>
-              <height>31</height>
+              <width>122</width>
+              <height>64</height>
              </rect>
             </property>
-            <property name="text">
-             <string>Add Souvenirs</string>
-            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QPushButton" name="addSouvenirs_2">
+               <property name="text">
+                <string>Add Souvenirs</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="deleteSouvenirs">
+               <property name="text">
+                <string>Delete Souvenirs</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </widget>
           <widget class="QWidget" name="Edit">
@@ -276,7 +276,7 @@
              <rect>
               <x>20</x>
               <y>10</y>
-              <width>94</width>
+              <width>121</width>
               <height>16</height>
              </rect>
             </property>
@@ -287,10 +287,10 @@
            <widget class="QLabel" name="editPriceLabel">
             <property name="geometry">
              <rect>
-              <x>29</x>
+              <x>25</x>
               <y>190</y>
-              <width>27</width>
-              <height>16</height>
+              <width>31</width>
+              <height>20</height>
              </rect>
             </property>
             <property name="text">
@@ -393,10 +393,10 @@
          <widget class="QLabel" name="priceLabel">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>6</x>
             <y>160</y>
-            <width>27</width>
-            <height>16</height>
+            <width>31</width>
+            <height>20</height>
            </rect>
           </property>
           <property name="text">
@@ -419,10 +419,10 @@
          <widget class="QLabel" name="nameLabel">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>0</x>
             <y>130</y>
-            <width>31</width>
-            <height>16</height>
+            <width>41</width>
+            <height>20</height>
            </rect>
           </property>
           <property name="text">
@@ -480,13 +480,13 @@
            <string>Delete</string>
           </property>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>1</x>
             <y>31</y>
             <width>151</width>
-            <height>48</height>
+            <height>56</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">

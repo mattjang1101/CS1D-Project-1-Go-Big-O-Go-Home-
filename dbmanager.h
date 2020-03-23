@@ -41,7 +41,7 @@ public:
 
     /** \brief DBManager()
       * \param No paramaters
-      * \return returns pointer
+      * \return Object created
       *
       * Constructor
       * This method reads in corresponding database,
@@ -50,7 +50,7 @@ public:
 
     /** \brief ~DBManager()
       * \param No paramaters
-      * \return returns pointer
+      * \return Memory deallocated
       *
       * Destructor
       * This method deallocates memory
